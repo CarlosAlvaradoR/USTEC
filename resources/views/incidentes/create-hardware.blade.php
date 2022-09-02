@@ -64,7 +64,8 @@
 
                             </div>
                         </div>
-                        <p class="text-gray-500">No existe este equipo <a href="#"
+                        <p class="text-gray-500">No existe este equipo <a
+                                href="{{route('incidentes.create.equipo', 'software')}}"
                                 class="text-blue-600 cursor-pointer">Crear</a></p>
                     </div>
                 </div>

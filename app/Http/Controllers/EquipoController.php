@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IncidenteController extends Controller
+class EquipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class IncidenteController extends Controller
      */
     public function index()
     {
-        return view('home.dashboard');
+        //
     }
 
     /**
@@ -21,21 +21,9 @@ class IncidenteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-
-        if ($request['tipo'] === 'software') {
-            $view = 'incidentes.create-software';
-        } else {
-            if ($request['tipo'] === 'hardware') {
-                $view = 'incidentes.create-hardware';
-            } else {
-                return redirect('/');
-            }
-        }
-
-
-        return view($view);
+        //
     }
 
     /**
@@ -47,11 +35,6 @@ class IncidenteController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    public function createEquipo(Request $request)
-    {
-        return view('incidentes.create-incidente-software');
     }
 
     /**

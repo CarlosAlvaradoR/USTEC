@@ -22,7 +22,7 @@ Route::get('/dashboard', [IncidenteController::class, 'index'])->middleware(['au
 
 //incidentes
 Route::get('/incidentes/create/{tipo}', [IncidenteController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create');
-
+Route::get('/incidentes/create/{tipo}/equipo', [IncidenteController::class, 'createEquipo'])->middleware(['auth', 'verified'])->name('incidentes.create.equipo');
 
 
 require __DIR__ . '/auth.php';
