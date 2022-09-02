@@ -23,7 +23,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('equipos.create-equipo');
     }
 
     /**

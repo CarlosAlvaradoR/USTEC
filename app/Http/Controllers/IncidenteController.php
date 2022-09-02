@@ -28,13 +28,11 @@ class IncidenteController extends Controller
             $view = 'incidentes.create-software';
         } else {
             if ($request['tipo'] === 'hardware') {
-                $view = 'incidentes.create-hardware';
+                $view = 'incidentes.hardware';
             } else {
                 return redirect('/');
             }
         }
-
-
         return view($view);
     }
 
@@ -49,10 +47,7 @@ class IncidenteController extends Controller
         //
     }
 
-    public function createEquipo(Request $request)
-    {
-        return view('incidentes.create-incidente-software');
-    }
+
 
     /**
      * Display the specified resource.

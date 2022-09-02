@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\IncidenteController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,16 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [IncidenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-//incidentes
+//** Incidentes
 Route::get('/incidentes/create/{tipo}', [IncidenteController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create');
-Route::get('/incidentes/create/{tipo}/equipo', [IncidenteController::class, 'createEquipo'])->middleware(['auth', 'verified'])->name('incidentes.create.equipo');
+
+//crear incidente tipo hardware
+Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create.hardware');
+
+//Crear equipo
+Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
+
+
 
 
 require __DIR__ . '/auth.php';

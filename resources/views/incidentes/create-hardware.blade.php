@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Crear Incidente') }}
+            {{ __('Crear Incidente Hardware') }}
         </h2>
     </x-slot>
 
@@ -9,66 +9,36 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex items-center ">
-                        <form action="">
-                            <div class="flex items-end gap-1">
-                                <div>
-                                    <x-label for="codigo" :value="__('Código')" />
+                    {{-- mensaje si se creo por primera vez --}}
+                    @if (session()->has('mensaje'))
+                    <div id="alert-additional-content-3"
+                        class="p-4 mb-4 border border-green-300 rounded-lg bg-green-50 dark:bg-green-200" role="alert">
+                        <div class="flex items-center">
 
-                                    <x-input id="codigo" class="block mt-1 w-60" type="text" name="codigo"
-                                        placeholder="Ingrese código patrimonial" :value="old('codigo')" required
-                                        autofocus />
-                                </div>
-                                <x-button class=" h-10 justify-center ">
-                                    {{ __('Buscar') }}
-                                </x-button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                {{--Resultados--}}
-                <div class="p-6 bg-white border-b border-gray-200">
-                    {{-- en caso exista --}}
-                    <div>
-                        <div class="flex justify-between">
-                            <p>Historial de Problemas</p>
-                            <x-button class=" h-10 justify-center ">
-                                {{ __('Registrar Incidente') }}
-                            </x-button>
-                        </div>
-                        <div class="p-6 bg-white border-b border-gray-200 md:flex md:justify-between md:items-center">
-                            <div class="space-y-3">
-                                <a href="#" class="text-xl font-bold">
-                                    Error con Energía
-                                </a>
-                                <p class="text-sm text-gray-600 font-bold">
-                                    Se malogro el conector
-                                </p>
-                                <p class="text-sm text-gray-500">Ocurrido: Hace 2 meses</p>
-
-                            </div>
-
-                            <div class="flex flex-col md:flex-row items-stretch gap-3  mt-5 md:mt-0">
-                                <a href="#"
-                                    class="bg-slate-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
-                                    Ver Solución
-                                </a>
-                                <a href="#"
-                                    class="bg-blue-800 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
-                                    editar
-                                </a>
-                                <button {{--wire:click='$emit("mostrarAlerta",{{$vacante->id}}--)' --}}
-                                    class="bg-red-600 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
-                                    Eliminar
-                                </button>
-
+                            <span class="sr-only">Info</span>
+                            <h3 class="text-lg font-medium text-green-700 dark:text-green-800">
+                                {{session('mensaje')}}
+                            </h3>
+                            <div class="mt-2 mb-4 text-sm text-green-700 dark:text-green-800">
+                                Puede crear un incidente desde aqui
                             </div>
                         </div>
-                        <p class="text-gray-500">No existe este equipo <a
-                                href="{{route('incidentes.create.equipo', 'software')}}"
-                                class="text-blue-600 cursor-pointer">Crear</a></p>
                     </div>
+                    @endif
+
+
+                    <h2 class="font-bold text-2xl">Equipo:
+                        <span class="text-xl text-gray-600 font-bold"> {{$equipo->nombre_equipo}} -
+                            {{$equipo->marca}}
+                        </span>
+                    </h2>
+
                 </div>
+
+
+
             </div>
         </div>
+    </div>
+
 </x-app-layout>
