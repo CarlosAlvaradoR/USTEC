@@ -13,7 +13,7 @@ class CrearNuevoEquipo extends Component
     public $descripcion;
 
     protected $rules = [
-        'codigo' => 'required',
+        'codigo' => 'required|unique:equipos',
         'nombre_equipo' => 'required|string',
         'marca' => 'required|string',
         'descripcion' => 'required|string'
@@ -33,6 +33,7 @@ class CrearNuevoEquipo extends Component
 
         //mensaje flash
         session()->flash('mensaje', 'Equipo Guargado');
+
         return redirect()->route('incidentes.create.hardware', $id);
     }
 

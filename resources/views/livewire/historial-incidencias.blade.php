@@ -13,7 +13,7 @@
             </div>
             <div>
                 <a class="bg-blue-800 hover:bg-blue-900 transition-colors text-white text-sm  px-5 py-2 rounded cursor-pointer uppercase w-full md:w-auto"
-                    href="#">+ Nuevo Incidente</a>
+                    href="{{route('equipo.create.incidentes',$equipo)}}">+ Nuevo Incidente</a>
             </div>
         </div>
 
@@ -23,12 +23,9 @@
 
         @empty
         <p class="text-gray-500 mt-4">¿No encuentras el equipo?
-            <a href="{{route('create.equipo', 'software')}}" class="text-blue-600 cursor-pointer underline">Crea uno
+            <a href="{{route('create.equipo')}}" class="text-blue-600 cursor-pointer underline">Crea uno
                 nuevo aqui</a>
         </p>
         @endforelse
     </div>
-
-
-
 </div>

@@ -16,4 +16,13 @@ class HardwareController extends Controller
             'equipo' => $equipo
         ]);
     }
+
+
+    public function createIncidente(Equipo $equipo)
+    {
+        //dd($equipo);
+        return view('incidentes.incidente-hardware', [
+            "equipo" => $equipo
+        ]);
+    }
 }

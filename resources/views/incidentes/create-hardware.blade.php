@@ -13,7 +13,7 @@
                     @if (session()->has('mensaje'))
                     <div id="alert-additional-content-3"
                         class="p-4 mb-4 border border-green-300 rounded-lg bg-green-50 dark:bg-green-200" role="alert">
-                        <div class="flex items-center">
+                        <div class="flex flex-col items-center">
 
                             <span class="sr-only">Info</span>
                             <h3 class="text-lg font-medium text-green-700 dark:text-green-800">
