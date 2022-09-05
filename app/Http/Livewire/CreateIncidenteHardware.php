@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Area;
 use App\Models\Equipo;
+use App\Models\Gravedad;
+use App\Models\Importancia;
 use Livewire\Component;
 
 class CreateIncidenteHardware extends Component
@@ -14,6 +17,11 @@ class CreateIncidenteHardware extends Component
     }
     public function render()
     {
-        return view('livewire.create-incidente-hardware');
+        $areas = Area::all();
+        $gravedades = Importancia::all();
+        return view('livewire.create-incidente-hardware', [
+            'areas' => $areas,
+            'gravedades' => $gravedades
+        ]);
     }
 }
