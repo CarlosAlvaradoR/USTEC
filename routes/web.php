@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\IncidenteController;
+use App\Http\Controllers\MaterialesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,9 @@ Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::cl
 Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
 
 
+/**Crear Materiales */
+Route::get('/materiales', [MaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('index.materiales');
+Route::get('/materiales/create', [MaterialesController::class, 'create'])->middleware(['auth', 'verified'])->name('materiales.create');
 
 
 require __DIR__ . '/auth.php';
