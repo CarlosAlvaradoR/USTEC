@@ -15,7 +15,8 @@ class MaterialesController extends Controller
     public function index()
     {
         //
-        return view('materiales.index');
+        $materiales = Materiales::all();
+        return view('materiales.index', compact('materiales'));
     }
 
     /**
@@ -38,6 +39,16 @@ class MaterialesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'nombre'=>'required|min:3',
+            'stock'=>'required|numeric'
+        ]);
+
+        $materiales = Materiales::create([
+            'nombre'=>$request->nombre, 
+            'stock'=>$request->stock
+        ]);
+        return redirect()->route('materiales.create');
     }
 
     /**

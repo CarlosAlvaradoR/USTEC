@@ -38,6 +38,7 @@ Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['
 /**Crear Materiales */
 Route::get('/materiales', [MaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('index.materiales');
 Route::get('/materiales/create', [MaterialesController::class, 'create'])->middleware(['auth', 'verified'])->name('materiales.create');
+Route::post('/materiales/store', [MaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('materiales.store');
 
 
 require __DIR__ . '/auth.php';
