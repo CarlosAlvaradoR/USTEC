@@ -20,7 +20,7 @@ return new class extends Migration
             //**es gravedad
             $table->foreignId('importancia_id')->constrained();
             $table->foreignId('tipo_id')->constrained();
-            $table->foreignId('equipo_id')->constrained();
+            $table->foreignId('equipo_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
         });
     }
