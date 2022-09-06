@@ -6,7 +6,7 @@
     </div>
     <div class=" md:flex mt-3 p-4  border rounded-lg border-gray-400">
         <div class="md:w-full">
-            <form class="w-full  " wire:submit.prevent='crearEquipo' novalidate>
+            <form class="w-full  " wire:submit.prevent='crearIncidente' novalidate>
                 <div class=" w-full md:grid md:grid-cols-2 items-start gap-3">
                     <div>
                         <x-label for="area" :value="__('Area')" />
