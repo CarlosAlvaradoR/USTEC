@@ -16,4 +16,10 @@ class Incidente extends Model
         'equipo_id',
         'user_id'
     ];
+
+
+    public function importancia()
+    {
+        return $this->belongsTo(Importancia::class);
+    }
 }

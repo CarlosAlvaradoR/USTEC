@@ -15,4 +15,13 @@ class Equipo extends Model
         'marca',
         'descripcion'
     ];
+
+    public function __construct()
+    {
+    }
+
+    public function incidentes()
+    {
+        return $this->hasMany(Incidente::class)->orderBy('created_at', 'DESC');
+    }
 }
