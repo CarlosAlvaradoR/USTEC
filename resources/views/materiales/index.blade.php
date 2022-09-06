@@ -10,81 +10,87 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- mensaje si se creo por primera vez --}}
-                    <div class="">
+                    <div class="py-2">
                         <a href="{{ route('materiales.create') }}"
-                            class="bg-red-600 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center">
+                            class="bg-red-600 py-2 px-4 rounded-lg text-white text-xs font-bold uppercase text-center float-right">
                             Crear</a>
                     </div>
-                    <br>
-                    <!-- component -->
-                    <div class="w-full lg:w-5/6">
-                        <div class="bg-white shadow-md rounded my-6">
-                            <table class="min-w-max w-full table-auto">
-                                <thead>
-                                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                        <th class="py-3 px-6 text-left">Nº</th>
-                                        <th class="py-3 px-6 text-left">Material</th>
-                                        <th class="py-3 px-6 text-center">Cantidad</th>
-                                        <th class="py-3 px-6 text-center">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-gray-600 text-sm font-light">
-                                    @foreach ($materiales as $material)
-                                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                            <td class="py-3 px-6 text-left">
-                                                <div class="flex items-center">
-                                                    <span>{{ $material->id }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="py-3 px-6 text-left">
-                                                <div class="flex items-center">
-                                                    <span>{{ $material->nombre }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="py-3 px-6 text-left">
-                                                <div class="flex items-center">
-                                                    <span>{{ $material->stock }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="py-3 px-6 text-center">
-                                                <div class="flex item-center justify-center">
-                                                    <div
-                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div
-                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div
-                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                    <br><br>
+
+                    <label for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Buscar</label>
+                    <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
                         </div>
+                        <input type="search" id="default-search"
+                            class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Buscar material" required>
+                        <button type="submit"
+                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
+                    <br>
+
+                    <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead
+                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr class="bg-gray-200">
+                                    <th scope="col" class="py-3 px-6">
+                                        Nº
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Material
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Marca
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Unidad Medida
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Stock
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($materiales as $material)
+                                    <tr
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <th scope="row"
+                                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {{ $material->id }}
+                                        </th>
+                                        <td class="py-4 px-6">
+                                            {{ $material->nombre }}
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            Laptop
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            Samsung
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            {{ $material->stock }}
+                                        </td>
+                                        <td class="py-4 px-6 items-start">
+                                            <a href="" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Añadir Material</a>
+                                            <a href="{{ route('materiales.edit', $material->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </div>

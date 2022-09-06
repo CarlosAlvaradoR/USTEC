@@ -39,6 +39,8 @@ Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['
 Route::get('/materiales', [MaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('index.materiales');
 Route::get('/materiales/create', [MaterialesController::class, 'create'])->middleware(['auth', 'verified'])->name('materiales.create');
 Route::post('/materiales/store', [MaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('materiales.store');
+Route::get('/materiales/{idMaterial}/edit', [MaterialesController::class, 'edit'])->middleware(['auth', 'verified'])->name('materiales.edit');
+Route::put('/materiales/{idMaterial}/update', [MaterialesController::class, 'update'])->middleware(['auth', 'verified'])->name('materiales.update');
 
 
 require __DIR__ . '/auth.php';

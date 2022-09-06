@@ -62,15 +62,10 @@ class MaterialesController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Materiales $materiales)
+    public function edit($id)
     {
-        //
+        $material=Materiales::findOrFail($id);
+        return view('materiales.edit', compact('material'));
     }
 
     /**
@@ -80,9 +75,21 @@ class MaterialesController extends Controller
      * @param  \App\Models\Materiales  $materiales
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materiales $materiales)
+    public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'nombre'=>'required|min:3',
+            'stock'=>'required|numeric'
+        ]);
+        
+        $materiales= Materiales::find($id);
+        $materiales->nombre=$request->nombre;
+        $materiales->stock=$request->stock;
+
+        $materiales->save();
+        $notification='Actualizado correctamente';
+        return redirect()->route('index.materiales')->with(compact('notification'));
     }
 
     /**
