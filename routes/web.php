@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\IncidenteController;
+use App\Http\Controllers\SalidaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,10 @@ Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::cl
 
 //Crear equipo
 Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
+
+//Salidas o soluciones
+Route::get('salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
+Route::post('salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
 
 
 
