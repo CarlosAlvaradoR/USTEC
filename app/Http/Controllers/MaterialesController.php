@@ -41,7 +41,7 @@ class MaterialesController extends Controller
         //
         $this->validate($request,[
             'nombre'=>'required|min:3',
-            'stock'=>'required|numeric'
+            'stock'=>'required|integer|min:0'
         ]);
 
         $materiales = Materiales::create([
@@ -80,7 +80,7 @@ class MaterialesController extends Controller
         //
         $this->validate($request,[
             'nombre'=>'required|min:3',
-            'stock'=>'required|numeric'
+            'stock'=>'required|integer|min:0'
         ]);
         
         $materiales= Materiales::find($id);
@@ -98,8 +98,14 @@ class MaterialesController extends Controller
      * @param  \App\Models\Materiales  $materiales
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Materiales $materiales)
+    public function destroy($id)
     {
         //
+        $materiales = Materiales::findOrFail($id);
+        $materialName = $materiales->nombre; //Obtiene el nombre del material
+        $materiales->delete();
+        $notification = "El material $materialName se eliminó corectamente";
+        //return "Eliminado";
+        return redirect()->route("index.materiales")->with(compact('notification'));
     }
 }
