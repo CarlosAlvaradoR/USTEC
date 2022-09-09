@@ -14,7 +14,8 @@ class Incidente extends Model
         'importancia_id',
         'tipo_id',
         'equipo_id',
-        'user_id'
+        'user_id',
+        'titulo'
     ];
 
     // ** importancia o gravedad del incidente

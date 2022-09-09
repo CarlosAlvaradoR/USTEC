@@ -25,7 +25,8 @@
             @forelse ($equipo->incidentes as $incidente)
             <div class="mt-5 md:flex md:justify-between ">
                 <div>
-                    <h2 class="font-bold text-lg ">{{$incidente->descripcion}}</h2>
+                    <h2 class="font-bold text-lg ">{{$incidente->titulo}}</h2>
+                    <p class="text-gray-500 text-sm">{{$incidente->descripcion}}</p>
                     <span
                         class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
                         <svg aria-hidden="true" class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20"

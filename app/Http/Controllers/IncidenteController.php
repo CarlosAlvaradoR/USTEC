@@ -31,7 +31,11 @@ class IncidenteController extends Controller
             if ($request['tipo'] === 'hardware') {
                 $view = 'incidentes.hardware';
             } else {
-                return redirect('/');
+                if ($request['tipo'] === 'red') {
+                    $view = 'incidentes.red';
+                } else {
+                    return redirect('/');
+                }
             }
         }
         return view($view);
