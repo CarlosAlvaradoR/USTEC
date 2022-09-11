@@ -13,7 +13,8 @@ class Equipo extends Model
         'codigo',
         'nombre_equipo',
         'marca',
-        'descripcion'
+        'descripcion',
+        'area_id'
     ];
 
     public function __construct()

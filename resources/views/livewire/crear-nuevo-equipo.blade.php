@@ -41,7 +41,23 @@
             <livewire:mostrar-alerta :message='$message' />
             @enderror
         </div>
+        <div>
 
+            <x-label for="area" :value="__('Area')" />
+            <select wire:model="area" id="area" class="w-full  rounded-md shadow-sm border-gray-300
+            focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                <option value="">--Seleccione--</option>
+                @foreach ($areas as $area)
+                <option value="{{$area->id}}">{{$area->area}}</option>
+
+                @endforeach
+
+            </select>
+
+            @error('area')
+            <livewire:mostrar-alerta :message='$message' />
+            @enderror
+        </div>
         <x-button class="w-full h-10 justify-center ">
             {{ __('Crear') }}
         </x-button>

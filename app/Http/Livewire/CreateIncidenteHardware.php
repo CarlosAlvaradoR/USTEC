@@ -14,7 +14,7 @@ class CreateIncidenteHardware extends Component
 
     public $descripcion;
     // public $estado;
-    public $area;
+    //  public $area;
     public $gravedad;
     public $tipo;
     public $eq;
@@ -23,7 +23,7 @@ class CreateIncidenteHardware extends Component
 
     protected $rules = [
         'descripcion' => 'required|string',
-        'area' => 'required',
+        // 'area' => 'required',
         'gravedad' => 'required',
         'titulo' => 'required|string'
     ];
@@ -51,7 +51,8 @@ class CreateIncidenteHardware extends Component
 
             'descripcion' => $datos['descripcion'],
             'titulo' => $datos['titulo'],
-            'area_id' => $datos['area'],
+            // ** se dejo de usar area porque el equipo ya tiene la asociacion 
+            // 'area_id' => $datos['area'], 
             'importancia_id' => $datos['gravedad'],
             'tipo_id' =>  $this->tipo,
             'equipo_id' => $this->equipo->id,

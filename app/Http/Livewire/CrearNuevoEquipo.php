@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Area;
 use App\Models\Equipo;
 use Livewire\Component;
 
@@ -11,12 +12,14 @@ class CrearNuevoEquipo extends Component
     public $nombre_equipo;
     public $marca;
     public $descripcion;
+    public $area;
 
     protected $rules = [
         'codigo' => 'required|unique:equipos',
         'nombre_equipo' => 'required|string',
         'marca' => 'required|string',
-        'descripcion' => 'required|string'
+        'descripcion' => 'required|string',
+        'area' => 'required'
 
     ];
 
@@ -27,7 +30,8 @@ class CrearNuevoEquipo extends Component
             'codigo' => $datos['codigo'],
             'nombre_equipo' => $datos['nombre_equipo'],
             'marca' => $datos['marca'],
-            'descripcion' => $datos['descripcion']
+            'descripcion' => $datos['descripcion'],
+            'area_id' => $datos['area']
         ]);
         $id = Equipo::latest('id')->first();
 
@@ -40,6 +44,9 @@ class CrearNuevoEquipo extends Component
 
     public function render()
     {
-        return view('livewire.crear-nuevo-equipo');
+        $areas = Area::all();
+        return view('livewire.crear-nuevo-equipo', [
+            'areas' => $areas
+        ]);
     }
 }
