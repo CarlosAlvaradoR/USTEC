@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Incidente;
 use Illuminate\Http\Request;
 
 class IncidenteController extends Controller
@@ -60,9 +61,15 @@ class IncidenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+
+
+
+        $incidentes = Incidente::latest()->paginate(5);  //->paginate(10);
+        return view('incidentes.show', [
+            'incidentes' => $incidentes
+        ]);
     }
 
     /**

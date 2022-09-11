@@ -47,8 +47,17 @@
                         </x-dropdown>
                     </div>
 
-                    <x-nav-link :href=" route('dashboard')" :active="request()->routeIs('')">
+                    <x-nav-link :href=" route('incidentes.show')" :active="request()->routeIs('')">
                         {{ __('Incidentes') }}
+                        @if (auth()->user()->sinSolucionar() > 0)
+                        <span
+                            class=" w-4 h-4 bg-blue-600 hover:bg-blue-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
+                            {{
+                            auth()->user()->sinSolucionar();}}</span>
+
+
+                        @endif
+
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">
                         {{ __('Materiales') }}

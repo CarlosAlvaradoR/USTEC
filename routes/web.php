@@ -25,7 +25,8 @@ Route::get('/dashboard', [IncidenteController::class, 'index'])->middleware(['au
 
 //** Incidentes
 Route::get('/incidentes/create/{tipo}', [IncidenteController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create');
-
+//listar incidentes
+Route::get('/incidentes/show', [IncidenteController::class, 'show'])->middleware(['auth', 'verified'])->name('incidentes.show');
 //buscar tipo hardware - abre form de busqueda 
 Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create.hardware');
 //crear incidente de un equipo tipo hardware

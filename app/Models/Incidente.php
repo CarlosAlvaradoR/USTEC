@@ -15,7 +15,8 @@ class Incidente extends Model
         'tipo_id',
         'equipo_id',
         'user_id',
-        'titulo'
+        'titulo',
+        'estado'
     ];
 
     // ** importancia o gravedad del incidente
@@ -23,10 +24,22 @@ class Incidente extends Model
     {
         return $this->belongsTo(Importancia::class);
     }
-
+    public function tipo()
+    {
+        return $this->belongsTo(Tipo::class);
+    }
 
     public function equipo()
     {
         return $this->belongsTo(Equipo::class);
+    }
+
+    public function estado()
+    {
+        if ($this->estado == 0) {
+            return 'No solucionado';
+        } else {
+            return 'Solucionado' . ' ' . $this->updated_at->diffForHumans();
+        }
     }
 }
