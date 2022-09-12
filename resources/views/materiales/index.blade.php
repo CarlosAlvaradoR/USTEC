@@ -57,8 +57,6 @@
                         <input type="search" id="default-search"
                             class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Buscar material" required>
-                        <button type="submit"
-                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
                     <br>
 
@@ -73,12 +71,12 @@
                                     <th scope="col" class="py-3 px-6">
                                         Material
                                     </th>
-                                    <th scope="col" class="py-3 px-6">
+                                    <!--<th scope="col" class="py-3 px-6">
                                         Marca
                                     </th>
                                     <th scope="col" class="py-3 px-6">
                                         Unidad Medida
-                                    </th>
+                                    </th>-->
                                     <th scope="col" class="py-3 px-6">
                                         Stock
                                     </th>
@@ -98,23 +96,23 @@
                                         <td class="py-4 px-6">
                                             {{ $material->nombre }}
                                         </td>
-                                        <td class="py-4 px-6">
+                                        <!--<td class="py-4 px-6">
                                             Laptop
                                         </td>
                                         <td class="py-4 px-6">
                                             Samsung
-                                        </td>
+                                        </td>-->
                                         <td class="py-4 px-6">
                                             {{ $material->stock }}
                                         </td>
                                         <td class="py-4 px-6 items-start">
                                             <form action="{{ route('materiales.destroy', $material->id) }}"
-                                                method="post">
+                                                method="post" class="form-delete" name="form-delete">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href=""
+                                                <a href="{{ route('materiales.create.stock', $material->id) }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Añadir
-                                                    </a>
+                                                    Stock</a>
                                                 <a href="{{ route('materiales.edit', $material->id) }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
                                                 <button type="submit"
@@ -128,11 +126,37 @@
                             </tbody>
                         </table>
                     </div>
-
+                    
                 </div>
-
+                {{ $materiales->links() }}
             </div>
         </div>
     </div>
 
 </x-app-layout>
+<script>
+    (function() {
+        'use strict'
+        var forms = document.querySelectorAll('.form-delete')
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    Swal.fire({
+                        title: '¿Confirma la eliminación del registro?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Confirmar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                        }
+                    })
+                }, false)
+            })
+    })()
+</script>

@@ -42,6 +42,8 @@ Route::post('/materiales/store', [MaterialesController::class, 'store'])->middle
 Route::get('/materiales/{idMaterial}/edit', [MaterialesController::class, 'edit'])->middleware(['auth', 'verified'])->name('materiales.edit');
 Route::put('/materiales/{idMaterial}/update', [MaterialesController::class, 'update'])->middleware(['auth', 'verified'])->name('materiales.update');
 Route::delete('/materiales/delete/{idMaterial}', [MaterialesController::class, 'destroy'])->middleware(['auth', 'verified'])->name('materiales.destroy');
+Route::get('/materiales/stock/create/{idMaterial}', [MaterialesController::class, 'createStock'])->middleware(['auth', 'verified'])->name('materiales.create.stock');
+Route::post('/materiales/stock/create/store/{idMaterial}', [MaterialesController::class, 'storeStock'])->middleware(['auth', 'verified'])->name('materiales.store.stock');
 
 
 require __DIR__ . '/auth.php';

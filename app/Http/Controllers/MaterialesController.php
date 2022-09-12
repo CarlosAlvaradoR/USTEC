@@ -15,7 +15,7 @@ class MaterialesController extends Controller
     public function index()
     {
         //
-        $materiales = Materiales::all();
+        $materiales = Materiales::paginate(1);
         return view('materiales.index', compact('materiales'));
     }
 
@@ -48,7 +48,8 @@ class MaterialesController extends Controller
             'nombre'=>$request->nombre, 
             'stock'=>$request->stock
         ]);
-        return redirect()->route('materiales.create');
+        $notification='Material creado correctamente';
+        return redirect()->route('materiales.create')->with(compact('notification'));
     }
 
     /**
@@ -107,5 +108,23 @@ class MaterialesController extends Controller
         $notification = "El material $materialName se eliminó corectamente";
         //return "Eliminado";
         return redirect()->route("index.materiales")->with(compact('notification'));
+    }
+
+    public function createStock($id){
+        $materiales = Materiales::findOrFail($id);
+        return view('materiales.create_stock', compact('materiales'));
+    }
+
+    public function storeStock(Request $request, $id){
+        $this->validate($request,[
+            'stock'=>'required|integer|min:0'
+        ]);
+        
+        $materiales= Materiales::find($id);
+        $materiales->stock=$materiales->stock+$request->stock;
+
+        $materiales->save();
+        $notification='Añadido correctamente al Stock';
+        return redirect()->route('index.materiales')->with(compact('notification'));
     }
 }
