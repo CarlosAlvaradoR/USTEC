@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipo;
+use App\Models\Incidente;
 use Illuminate\Http\Request;
 
 class HardwareController extends Controller
@@ -23,6 +24,14 @@ class HardwareController extends Controller
         //dd($equipo);
         return view('incidentes.incidente-hardware', [
             "equipo" => $equipo
+        ]);
+    }
+
+
+    public function editIncidente(Incidente $incidente)
+    {
+        return view('incidentes.editar-incidente-equipo', [
+            "incidente" => $incidente
         ]);
     }
 }

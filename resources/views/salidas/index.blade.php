@@ -10,14 +10,19 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
+                    @if ($incidente->equipo)
                     <h3 class="font-bold uppercase ">Intervencion para: <span
-                            class="lowercase text-gray-600">{{$incidente->descripcion .' en ' .
+                            class="lowercase text-gray-600">{{$incidente->titulo .' en ' .
                             $incidente->equipo->nombre_equipo .' - '. $incidente->equipo->marca}}
-
                         </span>
 
                     </h3>
+                    @else
 
+                    <h3 class="font-bold uppercase ">Intervencion para: <span
+                            class="lowercase text-gray-600">{{$incidente->titulo}}
+                        </span>
+                        @endif
 
 
                 </div>

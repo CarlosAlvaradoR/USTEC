@@ -25,4 +25,9 @@ class Equipo extends Model
     {
         return $this->hasMany(Incidente::class)->orderBy('created_at', 'DESC');
     }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }
