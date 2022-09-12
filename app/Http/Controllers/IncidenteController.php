@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
+use Dompdf\Dompdf;
+use PDF;
 use App\Models\Incidente;
 use Illuminate\Http\Request;
+
 
 class IncidenteController extends Controller
 {
@@ -17,6 +21,12 @@ class IncidenteController extends Controller
         return view('home.dashboard');
     }
 
+    public function incidente(Incidente $incidente)
+    {
+        return view('incidentes.incidente', [
+            'incidente' => $incidente
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -24,6 +34,7 @@ class IncidenteController extends Controller
      */
     public function create(Request $request)
     {
+
 
         if ($request['tipo'] === 'software') {
             // !TODO
@@ -40,6 +51,19 @@ class IncidenteController extends Controller
             }
         }
         return view($view);
+    }
+
+    public function createHistorialPDF(Equipo $equipo)
+    {
+
+        $data = [
+
+            'date' => date('d/m/Y'),
+            'equipo' => $equipo
+        ];
+
+        $pdf = PDF::loadView('incidentes.historial-pdf', $data);
+        return  $pdf->download('Historial.pdf');
     }
 
     /**
@@ -66,10 +90,8 @@ class IncidenteController extends Controller
 
 
 
-        $incidentes = Incidente::latest()->paginate(5);  //->paginate(10);
-        return view('incidentes.show', [
-            'incidentes' => $incidentes
-        ]);
+        //->paginate(10);
+        return view('incidentes.show');
     }
 
     /**

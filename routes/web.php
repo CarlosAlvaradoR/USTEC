@@ -4,6 +4,7 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\IncidenteController;
 use App\Http\Controllers\SalidaController;
+use App\Models\Incidente;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,13 @@ Route::get('/incidentes/show', [IncidenteController::class, 'show'])->middleware
 Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create.hardware');
 //crear incidente de un equipo tipo hardware
 Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
-
+// ** Editar incidente con equipo  
+// !se debe cambiar el controlador
+Route::get('/{incidente}/edit/hardware/incidente', [HardwareController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('equipo.edit.incidentes');
+// ** muestra un incidente
+Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
+//** descarga el historial en pdf */
+Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialPDF'])->middleware(['auth', 'verified'])->name('historial.incidente');
 //Crear equipo
 Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
 

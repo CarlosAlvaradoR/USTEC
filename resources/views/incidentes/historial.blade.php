@@ -1,3 +1,4 @@
+{{-- ** no se esta usando --}}
 <div>
     <div class="flex justify-between">
         <p>Historial de Problemas</p>

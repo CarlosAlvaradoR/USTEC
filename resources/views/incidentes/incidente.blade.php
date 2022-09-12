@@ -76,6 +76,16 @@
                 </div>
 
                 @endif
+
+                <div class="p-6 bg-white border-b border-gray-200">
+                    @forelse ($incidente->solucion as $solucion)
+                    <p>Solucion: {{$solucion->descripcion}}</p>
+                    @empty
+                    <p>Este incidente no tiene solucion</p>
+                    @endforelse
+
+
+                </div>
             </div>
         </div>
     </div>

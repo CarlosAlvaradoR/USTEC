@@ -42,4 +42,12 @@ class Incidente extends Model
             return 'Solucionado' . ' ' . $this->updated_at->diffForHumans();
         }
     }
+
+    public function solucion()
+    {
+        // $solucion = Salida::where('incidente_id', $this->id)->get();
+        // return $solucion;
+
+        return $this->hasMany(Salida::class);
+    }
 }
