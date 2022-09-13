@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="font-bold text-xl ">Ultimos Incidentes Registrados</h2>
+                    <h2 class="font-bold text-xl ">Últimos Incidentes Registrados</h2>
                     @if (session()->has('mensaje'))
 
                     <div id="alert-3" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200" role="alert">
