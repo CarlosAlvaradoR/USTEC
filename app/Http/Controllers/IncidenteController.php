@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipo;
-use Dompdf\Dompdf;
+use App\Models\Area;
 use PDF;
+use Dompdf\Dompdf;
+use App\Models\Equipo;
 use App\Models\Incidente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class IncidenteController extends Controller
@@ -18,7 +20,26 @@ class IncidenteController extends Controller
      */
     public function index()
     {
-        return view('home.dashboard');
+        //Area con mas interveciones Software
+        $sql = "SELECT `area_id`, COUNT(`area_id`) AS `area` FROM `incidentes` GROUP BY `area_id` ORDER BY `area` DESC LIMIT 1";
+        $areaMay =  DB::select($sql);
+        $areaMayorS = Area::find($areaMay[0]->area_id);
+        $cantidadAreaS = $areaMay[0]->area;
+
+        //Equipo con mas incidentes mas area
+        $sq = "SELECT `equipo_id`, COUNT(`equipo_id`) AS `equipo` FROM `incidentes` GROUP BY `equipo_id` ORDER BY `equipo` DESC LIMIT 1";
+        $equipoMay =  DB::select($sq);
+        $equipoMayor = Equipo::find($equipoMay[0]->equipo_id);
+        $cantidadEq = $equipoMay[0]->equipo;
+
+        $incidentes = Incidente::all();
+        return view('home.dashboard', [
+            'incidentes' => $incidentes,
+            'areaMayorS' => $areaMayorS,
+            'cantidadAreaS' => $cantidadAreaS,
+            'equipoMayor' => $equipoMayor,
+            'cantidadEq' => $cantidadEq
+        ]);
     }
 
     public function incidente(Incidente $incidente)

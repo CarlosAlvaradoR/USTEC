@@ -51,7 +51,7 @@
                         {{ __('Incidentes') }}
                         @if (auth()->user()->sinSolucionar() > 0)
                         <span
-                            class=" w-4 h-4 bg-blue-600 hover:bg-blue-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
+                            class=" ml-1  hover:animate-ping w-4 h-4 bg-blue-600 hover:bg-blue-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
                             {{
                             auth()->user()->sinSolucionar();}}</span>
                         @endif

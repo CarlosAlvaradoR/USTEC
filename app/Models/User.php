@@ -47,4 +47,10 @@ class User extends Authenticatable
         $cant = Incidente::where('estado', '=', 0)->count();
         return $cant;
     }
+
+    public function Solucionado()
+    {
+        $cant = Incidente::where('estado', '=', 1)->count();
+        return $cant;
+    }
 }
