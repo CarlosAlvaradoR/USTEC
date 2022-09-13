@@ -34,8 +34,8 @@ class CreateIncidenteSoftware extends Component
 
             'descripcion' => $datos['descripcion'],
             'titulo' => $datos['titulo'],
-            // ** se dejo de usar area porque el equipo ya tiene la asociacion 
-            // 'area_id' => $datos['area'], 
+
+            'area_id' => $datos['area'],
             'importancia_id' => $datos['gravedad'],
             'tipo_id' =>  $this->tipo,
             // 'equipo_id' => $this->equipo->id,

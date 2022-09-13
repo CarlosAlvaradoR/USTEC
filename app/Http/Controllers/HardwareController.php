@@ -26,12 +26,4 @@ class HardwareController extends Controller
             "equipo" => $equipo
         ]);
     }
-
-
-    public function editIncidente(Incidente $incidente)
-    {
-        return view('incidentes.editar-incidente-equipo', [
-            "incidente" => $incidente
-        ]);
-    }
 }

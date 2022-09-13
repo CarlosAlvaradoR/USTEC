@@ -32,9 +32,10 @@ Route::get('/incidentes/show', [IncidenteController::class, 'show'])->middleware
 Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create.hardware');
 //crear incidente de un equipo tipo hardware
 Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
-// ** Editar incidente con equipo  
-// !se debe cambiar el controlador
-Route::get('/{incidente}/edit/hardware/incidente', [HardwareController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('equipo.edit.incidentes');
+// ** Editar incidente ....con equipo  
+Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidentes');
+// ** editar incidente sin equipo
+// Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidente');
 // ** muestra un incidente
 Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
 //** descarga el historial en pdf */

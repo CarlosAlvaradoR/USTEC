@@ -66,6 +66,20 @@ class IncidenteController extends Controller
         return  $pdf->download('Historial.pdf');
     }
 
+    public function editIncidente(Incidente $incidente, Request $request)
+    {
+        if ($request['tipo'] === 'software') {
+            // !TODO
+            $view = 'incidentes.editar-incidente';
+        } else {
+            if ($request['tipo'] === 'hardware') {
+                $view = 'incidentes.editar-incidente-equipo';
+            }
+        }
+        return view($view, [
+            "incidente" => $incidente
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *

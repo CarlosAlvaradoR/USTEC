@@ -64,10 +64,10 @@
                     <td class="py-4 px-6 space-x-1">
 
                         <a href="{{route('show.incidente', $incidente)}}"
-                            class="font-medium text-blue-600 dark:text-blue-900 hover:underline">Ver</a>
+                            class="font-medium text-black-600 dark:text-black-900 hover:underline">Ver</a>
 
                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                            href="{{route('equipo.edit.incidentes', $incidente )}}">Editar</a>
+                            href="{{route('edit.incidentes',['incidente'=>$incidente, 'tipo'=>$incidente->tipo->tipo])}}">Editar</a>
                         <button wire:click='$emit("mostrarAlerta",{{$incidente->id}})'
                             class="font-medium text-red-600 dark:text-red-500 hover:underline">Eliminar</button>
                     </td>
