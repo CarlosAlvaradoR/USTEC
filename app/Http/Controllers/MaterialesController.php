@@ -15,27 +15,18 @@ class MaterialesController extends Controller
     public function index()
     {
         //
-        $materiales = Materiales::paginate(1);
+        $materiales = Materiales::paginate(12);
         return view('materiales.index', compact('materiales'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
         return view('materiales.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
@@ -52,12 +43,7 @@ class MaterialesController extends Controller
         return redirect()->route('materiales.create')->with(compact('notification'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Materiales $materiales)
     {
         //
@@ -69,13 +55,7 @@ class MaterialesController extends Controller
         return view('materiales.edit', compact('material'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
@@ -93,12 +73,7 @@ class MaterialesController extends Controller
         return redirect()->route('index.materiales')->with(compact('notification'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         //
