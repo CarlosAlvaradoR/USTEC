@@ -89,6 +89,24 @@ class MaterialesController extends Controller
         $materiales = Materiales::findOrFail($id);
         return view('materiales.create_stock', compact('materiales'));
     }
+    public function diminishView($id){ //Función que devuelve a la vista de decrementar materiales
+        $materiales = Materiales::findOrFail($id);
+        return view('materiales.diminish_stock', compact('materiales'));
+    }
+
+    public function diminishStock(Request $request, $id){
+        $this->validate($request,[
+            'stock'=>'required|integer|min:0'
+        ]);
+        
+        $materiales= Materiales::find($id);
+        $nameMaterial = $materiales->nombre;
+        $materiales->stock=$materiales->stock-$request->stock;
+
+        $materiales->save();
+        $notification="Se quitó $request->stock unidades correctamente al Material $nameMaterial";
+        return redirect()->route('index.materiales')->with(compact('notification'));
+    }
 
     public function storeStock(Request $request, $id){
         $this->validate($request,[

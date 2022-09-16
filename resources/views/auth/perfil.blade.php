@@ -11,7 +11,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <h1 class="text-xl font-bold text-center mb-10">Mi perfil - {{ Auth::user()->name }}</h1>
+                            <h1 class="text-xl font-bold text-center mb-1">Información personal</h1>
                             <div class=" md:flex md:justify-center ">
                                 <div class="md:w-1/2 ">
                                     @if (session('notification'))
@@ -46,7 +46,7 @@
                                     <form class="space-y-5" action="{{ route('materiales.store') }}" method="POST">
                                         @csrf
                                         <div>
-                                            <x-label for="password_actual" :value="__('Nombre Material')" />
+                                            <x-label for="password_actual" :value="__('Nombre de Usuario')" />
 
                                             <x-input id="nombre" class="block mt-1 w-full" type="text"
                                                 name="nombre" placeholder="Nombre del Usuario"
@@ -69,7 +69,7 @@
                                         @endif
 
                                         <div>
-                                            <x-label for="stock" :value="__('Cantidad')" />
+                                            <x-label for="stock" :value="__('Correo')" />
 
                                             <x-input id="stock" class="block mt-1 w-full" type="text"
                                                 name="stock" placeholder="Email del Usuario"
@@ -109,7 +109,7 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <h1 class="text-xl font-bold text-center mb-10">Mi perfil - {{ Auth::user()->name }}</h1>
+                            <h1 class="text-xl font-bold text-center mb-1">Actualizar Contraseña</h1>
                             <div class=" md:flex md:justify-center ">
                                 <div class="md:w-1/2 ">
                                     @if (session('notificationPassword'))

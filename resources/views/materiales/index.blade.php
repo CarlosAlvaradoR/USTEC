@@ -86,12 +86,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $contador=1
+                                @endphp
                                 @foreach ($materiales as $material)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <th scope="row"
                                             class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $material->id }}
+                                            {{ $contador++ }}
                                         </th>
                                         <td class="py-4 px-6">
                                             {{ $material->nombre }}
@@ -106,19 +109,48 @@
                                             {{ $material->stock }}
                                         </td>
                                         <td class="py-4 px-6 items-start">
+
                                             <form action="{{ route('materiales.destroy', $material->id) }}"
                                                 method="post" class="form-delete" name="form-delete">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('materiales.create.stock', $material->id) }}"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Añadir
-                                                    Stock</a>
-                                                <a href="{{ route('materiales.edit', $material->id) }}"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                                                <button type="submit"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Eliminar
-                                                </button>
+                                                <div class="flex">
+                                                    <div
+                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                        <a href="{{ route('materiales.create.stock', $material->id) }}"
+                                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                                            title="Añadir Material">
+                                                            <i class="fa-solid fa-plus"></i></a>
+
+                                                    </div>
+                                                    <div
+                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                        <a href="{{ route('materiales.diminish.stock', $material->id) }}"
+                                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                                            title="Quitar Material">
+                                                            <i class="fa-regular fa-square-minus"></i></a>
+
+                                                    </div>
+                                                    <div
+                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                        <a href="{{ route('materiales.edit', $material->id) }}"
+                                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                                            title="Editar Material">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+
+                                                    </div>
+                                                    <div
+                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                        <button type="submit"
+                                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline" title="Eliminar Material">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+
+
                                             </form>
                                         </td>
                                     </tr>
@@ -126,7 +158,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
                 {{ $materiales->links() }}
             </div>
