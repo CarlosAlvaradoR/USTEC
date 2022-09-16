@@ -62,4 +62,13 @@ class UserController extends Controller
             }
         }
     }
+
+    public function destroy($id){
+        $user = User::findOrFail($id);
+        $userName = $user->name; //Obtiene el nombre del material
+        $user->delete();
+        $notification = "El usuario $userName se eliminó correctamente";
+        //return "Eliminado";
+        return redirect()->route("users.index")->with(compact('notification'));
+    }
 }

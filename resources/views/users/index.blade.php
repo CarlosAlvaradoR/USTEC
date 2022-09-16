@@ -69,7 +69,7 @@
                                         Nº
                                     </th>
                                     <th scope="col" class="py-3 px-6">
-                                        Material
+                                        Nombre
                                     </th>
                                     <!--<th scope="col" class="py-3 px-6">
                                         Marca
@@ -78,7 +78,7 @@
                                         Unidad Medida
                                     </th>-->
                                     <th scope="col" class="py-3 px-6">
-                                        Stock
+                                        Email
                                     </th>
                                     <th scope="col" class="py-3 px-6">
                                         Acciones
@@ -96,17 +96,11 @@
                                         <td class="py-4 px-6">
                                             {{ $user->name }}
                                         </td>
-                                        <!--<td class="py-4 px-6">
-                                            Laptop
-                                        </td>
-                                        <td class="py-4 px-6">
-                                            Samsung
-                                        </td>-->
                                         <td class="py-4 px-6">
                                             {{ $user->email }}
                                         </td>
                                         <td class="py-4 px-6 items-start">
-                                            <form action="#"
+                                            <form action="{{ route('users.destroy', $user->id) }}"
                                                 method="post" class="form-delete" name="form-delete">
                                                 @csrf
                                                 @method('DELETE')

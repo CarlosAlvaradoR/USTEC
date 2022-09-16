@@ -65,5 +65,6 @@ Route::post('/perfil/change', [UserController::class, 'changeUser'])->middleware
 //Usuarios
 Route::get('/users', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'verified'])->name('users.create');
+Route::delete('/users/delete/{idUser}', [UserController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.destroy');
 
 require __DIR__ . '/auth.php';
