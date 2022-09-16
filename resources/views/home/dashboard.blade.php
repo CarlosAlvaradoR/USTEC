@@ -52,7 +52,10 @@
                             class="transition hover:-translate-y-1 ease-in-out  duration-300    bg-white p-4 border rounded-lg shadow-lg flex justify-between items-center">
                             <div>
                                 <h2 class="font-extrabold text-gray-700  text-4xl">{{$incidentes->count()}}</h2>
-                                <p class="text-gray-500 text-xs">Total incidentes</p>
+                                <p class="text-gray-500 text-xs">Total incidentes
+                                </p>
+                                <p class="text-gray-600 text-xs">Tipo uno: {{$totalTipoUno}},
+                                    Tipo dos: {{$totalTipoDos}} </p>
                             </div>
 
                             <div class="bg-orange-600 border rounded-lg p-1 ">
@@ -142,12 +145,12 @@
 
                         <div
                             class="bg-white col-span-2    p-4 border rounded-lg shadow-lg flex justify-between items-center">
-                            <canvas id="myChart4" width="400" height="200"></canvas>
+                            <canvas id="myChart3" width="400" height="200"></canvas>
 
                         </div>
                         <div
                             class="bg-white col-span-1    p-4 border rounded-lg shadow-lg flex justify-between items-center">
-                            <canvas id="myChart3" width="400" height="200"></canvas>
+                            <canvas id="areas" width="400" height="200"></canvas>
 
                         </div>
 
@@ -169,152 +172,245 @@
         integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options:{
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
-const ct = document.getElementById('myChart2');
-const myChart2 = new Chart(ct, {
-    type: 'polarArea',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+        obtenerDatos()
+        let areas  = [];
+        let gravedades  = [];
+        let tipoUno  = [];
+        let tipoDos  = [];
+        let topEquipos  = [];
         
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+        async function obtenerDatos() {
+            const url = 'api/incidentes'
+            const respuesta = await fetch(url);
+            datos = await respuesta.json();
+            areas = datos.areas;
+            gravedades = datos.gravedades;
+            tipoUno = datos.tipoUno;    
+            tipoDos = datos.tipoDos; 
+            topEquipos = datos.topEquipos;   
+            console.log(datos);
+            mostrarAreas();
+            mostrarGravedades();
+            mostrarTipos();
+            mostrarTopEquipos();
         }
+
+
+function mostrarTipos(){
+
+    const monthNames = ["January", "February", "March", "April", "May", "June","July", "August","September", "October", "November", "December"];
+
+    getLongMonthName = function(date) {
+            return monthNames[date];
+    }   
+    const dataUno = [0,0,0,0,0,0,0,0,0,0,0,0];
+    const dataDos = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+    for (let index = 0; index <= dataUno.length ; index++) {
+        tipoUno.forEach(tipo => {
+                if(tipo.mes === index ){  
+                    dataUno.splice(index-1,0, tipo.total)    
+                    dataUno.splice(index,1)      
+                }       
+        })
+     
     }
-});
 
+    for (let index = 0; index <= dataDos.length ; index++) {
+        tipoDos.forEach(tipo => {
+                if(tipo.mes === index ){  
+                    dataDos.splice(index-1,0, tipo.total)    
+                    dataDos.splice(index,1)      
+                }       
+        })
+     
+    }
 
-const c3 = document.getElementById('myChart3');
-const myChart3 = new Chart(c3, {
-    type: 'pie',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+console.log(dataDos);
+
+    const data = {
+        labels: monthNames,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+            type: 'line',
+            label: 'Tipo 1',
+            data: dataUno,
+            borderColor: 'rgb(255, 99, 132)',
+            
+            fill: true,
+        }, {
+            type: 'line',
+            label: 'Tipo 2',
+            data: dataDos,
+            fill: true,
+            borderColor: 'rgb(54, 162, 235)'
         }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+};
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
-        }
-    }
-});
+       }
+    };
 
 
-const c4 = document.getElementById('myChart4');
-const myChart4 = new Chart(c4, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+    const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx,  config);
+}
+      
+function mostrarGravedades(){
+    
+    const ct = document.getElementById('myChart2');
+        const myChart2 = new Chart(ct, {
+            type: 'doughnut',
+            data: {
+                labels: gravedades.map(gravedad => gravedad.importancia),
+                datasets: [{
+             
+                    data: gravedades.map(gravedad => gravedad.total),
+                    backgroundColor: [ 
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                       
+                        
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        
+                        
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                       
+                        text: 'CANTIDAD DE INCIDENTES POR GRAVEDAD'
+                    }
+                }
             }
-        }
-    }
-});
+        });
+
+}
+
+function mostrarAreas(){
+    
+
+    const c3 = document.getElementById('areas');
+       
+        const myChart3 = new Chart(c3, {      
+            type: 'pie',
+            data: {
+                labels: areas.map(area => area.area),
+                datasets: [{
+                    label: '# of Votes', 
+                    data: areas.map(area => area.total),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },plugins: {
+                    title: {
+                        display: true,
+                       
+                        text: 'CANTIDAD DE INCIDENTES POR AREA'
+                    }
+                }
+            }
+                
+        });
+
+}
+function mostrarTopEquipos(){
+    
+
+
+    const c4 = document.getElementById('myChart3');
+        const myChart4 = new Chart(c4, {
+            type: 'bar',
+            data: {
+                labels: topEquipos.map(equipo => equipo.equipo),
+                datasets: [{
+                
+                    data: topEquipos.map(equipo => equipo.total),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,    
+                        text: 'TOP 5 EQUIPOS CON MAS INTERVENCIONES'
+                    }
+                }
+            }
+        });
+}
 
 
     </script>

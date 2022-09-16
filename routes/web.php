@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\APIIncidentes;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\IncidenteController;
@@ -44,9 +45,11 @@ Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialP
 Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
 
 //Salidas o soluciones
-Route::get('salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
-Route::post('salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
+Route::get('/salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
+Route::post('/salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
 
+//** API 's */
+Route::get('/api/incidentes', [APIIncidentes::class, 'index'])->name('api.incidentes');
 
 
 

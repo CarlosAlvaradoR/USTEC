@@ -20,6 +20,10 @@ class IncidenteController extends Controller
      */
     public function index()
     {
+
+        //** Total tipo uno y dos */
+        $totalTipoUno = Incidente::where('tipo_id', 1)->count();
+        $totalTipoDos = Incidente::where('tipo_id', 2)->count();
         //Area con mas interveciones Software
         $sql = "SELECT `area_id`, COUNT(`area_id`) AS `area` FROM `incidentes` GROUP BY `area_id` ORDER BY `area` DESC LIMIT 1";
         $areaMay =  DB::select($sql);
@@ -38,7 +42,9 @@ class IncidenteController extends Controller
             'areaMayorS' => $areaMayorS,
             'cantidadAreaS' => $cantidadAreaS,
             'equipoMayor' => $equipoMayor,
-            'cantidadEq' => $cantidadEq
+            'cantidadEq' => $cantidadEq,
+            'totalTipoUno' => $totalTipoUno,
+            'totalTipoDos' => $totalTipoDos
         ]);
     }
 
