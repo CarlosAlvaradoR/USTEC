@@ -53,6 +53,9 @@
                     <x-nav-link :href="route('index.materiales')" :active="request()->routeIs('')">
                         {{ __('Materiales') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('index.equipos')" :active="request()->routeIs('')">
+                        {{ __('Equipos') }}
+                    </x-nav-link>
 
 
 

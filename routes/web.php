@@ -32,8 +32,18 @@ Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, '
 //crear incidente de un equipo tipo hardware
 Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
 
+//Mostrar Equipo
+Route::get('/equipos', [EquipoController::class, 'index'])->middleware(['auth', 'verified'])->name('index.equipos');
+
 //Crear equipo
 Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
+
+//Editar Equipos
+Route::get('/equipos/{idEquipo}/edit', [EquipoController::class, 'edit'])->middleware(['auth', 'verified'])->name('equipos.edit');
+Route::put('/equipos/{idEquipo}/update', [EquipoController::class, 'update'])->middleware(['auth', 'verified'])->name('equipos.update');
+
+//Eliminar Equipos
+Route::delete('/equipos/delete/{idEquipo}', [EquipoController::class, 'destroy'])->middleware(['auth', 'verified'])->name('equipos.destroy');
 
 
 /**Crear Materiales */
