@@ -1,6 +1,8 @@
 <div>
     <div class="flex items-center ">
-        <form action="" wire:submit.prevent='leerDatosFormulario' novalidate>
+        <form method="GET" wire:submit.prevent='leerDatosFormulario' novalidate>
+            @csrf
+            @method('PUT')
             <div class="flex items-end gap-1">
                 <div>
                     <x-label for="codigo" :value="__('Código')" />
