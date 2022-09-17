@@ -30,7 +30,7 @@
                             class="bg-blue-300 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900 cursor-pointer">{{$incidente->importancia->importancia}}
                         </span>
 
-                        @if ( $incidente->estado === 0)
+                        @if ( $incidente->estado === 2)
                         <a href="{{route('salida.index',$incidente )}}"
                             class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900 cursor-pointer">
                             Sin solucionar</a>

@@ -52,6 +52,7 @@ class CreateIncidenteHardware extends Component
             'descripcion' => $datos['descripcion'],
             'titulo' => $datos['titulo'],
             // ** se coloca el area donde esta el equipo
+
             'area_id' => $this->equipo->area_id,
             'importancia_id' => $datos['gravedad'],
             'tipo_id' =>  $this->tipo,

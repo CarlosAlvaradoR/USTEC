@@ -37,10 +37,10 @@ class Incidente extends Model
 
     public function estado()
     {
-        if ($this->estado == 0) {
+        if ($this->estado == 2) {
             return 'No solucionado';
         } else {
-            return 'Solucionado' . ' ' . $this->updated_at->diffForHumans();
+            return 'Solucionado';
         }
     }
 
