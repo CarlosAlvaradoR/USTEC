@@ -56,7 +56,7 @@
                         </div>
                         <input type="search" id="default-search"
                             class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Buscar material" required>
+                            placeholder="Buscar usuario" required>
                     </div>
                     <br>
 
@@ -100,19 +100,36 @@
                                             {{ $user->email }}
                                         </td>
                                         <td class="py-4 px-6 items-start">
-                                            <form action="{{ route('users.destroy', $user->id) }}"
-                                                method="post" class="form-delete" name="form-delete">
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="post"
+                                                class="form-delete" name="form-delete">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="#"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Añadir
-                                                    Stock</a>
-                                                <a href="#"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                                                <button type="submit"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                    Eliminar
-                                                </button>
+                                                <div class="flex">
+
+                                                    <div
+                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                        <a href=""
+                                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                                            title="Editar información del usuario">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
+
+                                                    </div>
+                                                    <div
+                                                        class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                        @if ($user->status == 1)
+                                                            <button type="submit" title="Click para deshabilitar el usuario"
+                                                                class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                                                Activo
+                                                            </button>
+                                                        @else
+                                                            <button type="submit" title="Click para habilitar el usuario"
+                                                                class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                                                Inactivo
+                                                            </button>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                             </form>
                                         </td>
                                     </tr>
@@ -120,7 +137,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
                 <!--{ $users->links() }}-->
             </div>

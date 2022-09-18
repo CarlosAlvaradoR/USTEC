@@ -65,9 +65,17 @@ class UserController extends Controller
 
     public function destroy($id){
         $user = User::findOrFail($id);
-        $userName = $user->name; //Obtiene el nombre del material
-        $user->delete();
-        $notification = "El usuario $userName se eliminó correctamente";
+        if ($user->status == 1) { //El usuario está activo
+            $user->status= 0;
+            $mensaje ="El usuario $user->name de deshabilitó correctamente";
+        }else {
+            $user->status = 1;
+            $mensaje ="El usuario $user->name de habilitó correctamente";
+        }
+        
+        $user->save();
+        
+        $notification = $mensaje;
         //return "Eliminado";
         return redirect()->route("users.index")->with(compact('notification'));
     }

@@ -63,8 +63,8 @@ Route::get('/perfil', [UserController::class, 'perfil'])->middleware(['auth', 'v
 Route::post('/perfil/change', [UserController::class, 'changeUser'])->middleware(['auth', 'verified'])->name('perfil.change');
 
 //Usuarios
-Route::get('/users', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'verified'])->name('users.create');
-Route::delete('/users/delete/{idUser}', [UserController::class, 'destroy'])->middleware(['auth', 'verified'])->name('users.destroy');
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'verified', 'admin'])->name('users.create');
+Route::delete('/users/delete/{idUser}', [UserController::class, 'destroy'])->middleware(['auth', 'verified', 'admin'])->name('users.destroy');
 
 require __DIR__ . '/auth.php';
