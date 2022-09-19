@@ -146,7 +146,7 @@
                                         <div>
                                             <x-label for="password_actual" :value="__('Password Actual')" />
 
-                                            <x-input id="password_actual" class="block mt-1 w-full" type="text"
+                                            <x-input id="password_actual" class="block mt-1 w-full" type="password"
                                                 name="password_actual" placeholder="Ingrese su contraseña actual"
                                                 value="" required autofocus />
                                         </div>
@@ -169,7 +169,7 @@
                                         <div>
                                             <x-label for="password" :value="__('Contraseña Nueva')" />
 
-                                            <x-input id="password" class="block mt-1 w-full" type="text"
+                                            <x-input id="password" class="block mt-1 w-full" type="password"
                                                 name="password" placeholder="Ingrese Nueva Contraseña" value=""
                                                 required autofocus />
                                         </div>
@@ -193,7 +193,7 @@
                                             <x-label for="password_confirmation" :value="__('Confirmar Contraseña Nueva')" />
 
                                             <x-input id="password_confirmation" class="block mt-1 w-full"
-                                                type="text" name="password_confirmation"
+                                                type="password" name="password_confirmation"
                                                 placeholder="Repita la contraseña" value="" required
                                                 autofocus />
                                         </div>

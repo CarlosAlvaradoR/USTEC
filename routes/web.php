@@ -6,7 +6,9 @@ use App\Http\Controllers\IncidenteController;
 use App\Http\Controllers\MaterialesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\ShowUsers;
+use App\Http\Livewire\ShowMateriales;
+use App\Http\Livewire\ShowEquipos;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +35,8 @@ Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, '
 Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
 
 //Mostrar Equipo
-Route::get('/equipos', [EquipoController::class, 'index'])->middleware(['auth', 'verified'])->name('index.equipos');
+Route::middleware(['auth', 'verified'])->get('/equipos', ShowEquipos::class)->name('index.equipos');
+//Route::get('/equipos', [EquipoController::class, 'index'])->middleware(['auth', 'verified'])->name('index.equipos');
 
 //Crear equipo
 Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
@@ -47,7 +50,8 @@ Route::delete('/equipos/delete/{idEquipo}', [EquipoController::class, 'destroy']
 
 
 /**Crear Materiales */
-Route::get('/materiales', [MaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('index.materiales');
+Route::middleware(['auth', 'verified'])->get('/materiales', ShowMateriales::class)->name('index.materiales');
+//Route::get('/materiales', [ShowMateriales::class])->middleware(['auth', 'verified'])->name('index.materiales');
 Route::get('/materiales/create', [MaterialesController::class, 'create'])->middleware(['auth', 'verified'])->name('materiales.create');
 Route::post('/materiales/store', [MaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('materiales.store');
 Route::get('/materiales/{idMaterial}/edit', [MaterialesController::class, 'edit'])->middleware(['auth', 'verified'])->name('materiales.edit');
@@ -63,7 +67,8 @@ Route::get('/perfil', [UserController::class, 'perfil'])->middleware(['auth', 'v
 Route::post('/perfil/change', [UserController::class, 'changeUser'])->middleware(['auth', 'verified'])->name('perfil.change');
 
 //Usuarios
-Route::get('/users', [UserController::class, 'index'])->middleware(['auth', 'verified', 'admin'])->name('users.index');
+Route::middleware(['auth', 'verified', 'admin'])->get('/users', ShowUsers::class)->name('users.index');
+//Route::get('/users', [ShowPosts::class],'render')->middleware(['auth', 'verified', 'admin'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'verified', 'admin'])->name('users.create');
 Route::delete('/users/delete/{idUser}', [UserController::class, 'destroy'])->middleware(['auth', 'verified', 'admin'])->name('users.destroy');
 
