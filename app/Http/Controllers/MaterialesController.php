@@ -15,73 +15,109 @@ class MaterialesController extends Controller
     public function index()
     {
         //
-        return view('materiales.index');
+        $materiales = Materiales::paginate(12);
+        return view('materiales.index', compact('materiales'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
         return view('materiales.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'nombre'=>'required|min:3',
+            'stock'=>'required|integer|min:0'
+        ]);
+
+        $materiales = Materiales::create([
+            'nombre'=>$request->nombre, 
+            'stock'=>$request->stock
+        ]);
+        $notification='Material creado correctamente';
+        return redirect()->route('materiales.create')->with(compact('notification'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Materiales $materiales)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Materiales $materiales)
+    public function edit($id)
     {
-        //
+        $material=Materiales::findOrFail($id);
+        return view('materiales.edit', compact('material'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Materiales $materiales)
+    
+    public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'nombre'=>'required|min:3',
+            'stock'=>'required|integer|min:0'
+        ]);
+        
+        $materiales= Materiales::find($id);
+        $materiales->nombre=$request->nombre;
+        $materiales->stock=$request->stock;
+
+        $materiales->save();
+        $notification='Actualizado correctamente';
+        return redirect()->route('index.materiales')->with(compact('notification'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Materiales  $materiales
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Materiales $materiales)
+   
+    public function destroy($id)
     {
         //
+        $materiales = Materiales::findOrFail($id);
+        $materialName = $materiales->nombre; //Obtiene el nombre del material
+        $materiales->delete();
+        $notification = "El material $materialName se eliminó corectamente";
+        //return "Eliminado";
+        return redirect()->route("index.materiales")->with(compact('notification'));
+    }
+
+    public function createStock($id){
+        $materiales = Materiales::findOrFail($id);
+        return view('materiales.create_stock', compact('materiales'));
+    }
+    public function diminishView($id){ //Función que devuelve a la vista de decrementar materiales
+        $materiales = Materiales::findOrFail($id);
+        return view('materiales.diminish_stock', compact('materiales'));
+    }
+
+    public function diminishStock(Request $request, $id){
+        $this->validate($request,[
+            'stock'=>'required|integer|min:0'
+        ]);
+        
+        $materiales= Materiales::find($id);
+        $nameMaterial = $materiales->nombre;
+        $materiales->stock=$materiales->stock-$request->stock;
+
+        $materiales->save();
+        $notification="Se quitó $request->stock unidades correctamente al Material $nameMaterial";
+        return redirect()->route('index.materiales')->with(compact('notification'));
+    }
+
+    public function storeStock(Request $request, $id){
+        $this->validate($request,[
+            'stock'=>'required|integer|min:0'
+        ]);
+        
+        $materiales= Materiales::find($id);
+        $materiales->stock=$materiales->stock+$request->stock;
+
+        $materiales->save();
+        $notification='Añadido correctamente al Stock';
+        return redirect()->route('index.materiales')->with(compact('notification'));
     }
 }

@@ -43,12 +43,16 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'employee'
         ]);
 
-        event(new Registered($user));
+        $notification='Usuario registrado correctamente';
+        return redirect()->route('register')->with(compact('notification'));
 
-        Auth::login($user);
+        //event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        //Auth::login($user);
+
+        //return redirect(RouteServiceProvider::HOME);
     }
 }
