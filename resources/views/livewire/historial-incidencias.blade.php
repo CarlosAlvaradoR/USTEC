@@ -63,15 +63,18 @@
                 </div>
 
             </div>
+
+            @forelse ($incidente->solucion as $solucion)
             <div class="mt-2 p-3 bg-green-200 border rounded-lg">
-                @forelse ($incidente->solucion as $solucion)
                 <p><span class="font-bold text-green-800">Solucion: </span> {{$solucion->descripcion}}</p>
-                @empty
-                <p>Este incidente no tiene solucion</p>
-                @endforelse
-
-
             </div>
+            @empty
+            <div class="mt-2 p-3 bg-sky-400 border rounded-lg">
+                <p>Este incidente no tiene solucion</p>
+            </div>
+            @endforelse
+
+
             <hr class="my-8 h-px bg-gray-200 border-0 dark:bg-gray-700">
 
             @empty
