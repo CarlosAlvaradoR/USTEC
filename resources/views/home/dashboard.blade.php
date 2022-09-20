@@ -75,8 +75,11 @@
                         <div
                             class="transition hover:-translate-y-1 ease-in-out  duration-300    bg-white p-4 border rounded-lg shadow-lg flex justify-between items-center">
                             <div>
-                                <h2 class="font-extrabold text-gray-700 text-1xl">{{$equipoMayor->nombre_equipo}}</h2>
-                                <p class="text-gray-500 text-xs">Equipo con mas intervenciones: {{$cantidadEq}}</p>
+                                <h2 class="font-extrabold text-gray-700 text-1xl">{{$equipoMayor->nombre_equipo ?? ''}}
+                                </h2>
+                                <p class="text-gray-500 text-xs">Equipo con mas intervenciones: {{$equipoMayor->total ??
+                                    ''}}
+                                </p>
                             </div>
 
                             <div class="bg-gray-600 border rounded-lg p-1">
@@ -94,8 +97,10 @@
                         <div
                             class="transition hover:-translate-y-1 ease-in-out  duration-300    bg-white p-4 border rounded-lg shadow-lg flex justify-between items-center">
                             <div>
-                                <h2 class="font-extrabold text-gray-700 text-1xl">{{$areaMayorS->area}}</h2>
-                                <p class="text-gray-500 text-xs">Area con mas incidentes software: {{$cantidadAreaS}}
+                                <h2 class="font-extrabold text-gray-700 text-1xl">{{$areaMayorSoft->area ?? ''}}</h2>
+                                <p class="text-gray-500 text-xs">Area con mas incidentes software:
+                                    {{$areaMayorSoft->total
+                                    ?? ''}}
                                 </p>
                             </div>
 
@@ -114,8 +119,9 @@
                         <div
                             class="transition hover:-translate-y-1 ease-in-out  duration-300    bg-white p-4 border rounded-lg shadow-lg flex justify-between items-center">
                             <div>
-                                <h2 class="font-extrabold text-gray-700 text-1xl">{{$equipoMayor->area->area}}</h2>
-                                <p class="text-gray-500 text-xs">Area con mas incidentes Hardware: {{$cantidadEq}}</p>
+                                <h2 class="font-extrabold text-gray-700 text-1xl">{{$areaMayorHard->area ?? ''}}</h2>
+                                <p class="text-gray-500 text-xs">Area con mas incidentes Hardware:
+                                    {{$areaMayorHard->total ?? ''}}</p>
                             </div>
 
                             <div class="bg-blue-600 border rounded-lg p-1">
@@ -274,14 +280,11 @@ function mostrarGravedades(){
              
                     data: gravedades.map(gravedad => gravedad.total),
                     backgroundColor: [ 
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
+                        'rgb(20,184,166)',
+                        'rgb(234,179,8)',
+                        'rgb(239,68,68)',
                        
-                        
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                       
                     ],
                     borderColor: [
                         'rgba(75, 192, 192, 1)',

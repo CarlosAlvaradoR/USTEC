@@ -42,7 +42,7 @@ class MostrarIncidentes extends Component
             $query->where('estado', $this->estado);
         })->when($this->gravedad, function ($query) {
             $query->where('importancia_id', $this->gravedad);
-        })->paginate(5);
+        })->orderBy('created_at', 'DESC')->paginate(5);
 
         return view('livewire.mostrar-incidentes', [
             'incidentes' => $incidentes
