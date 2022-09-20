@@ -57,7 +57,7 @@
                         @endif
 
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">
+                    <x-nav-link :href="route('index.materiales')" :active="request()->routeIs('')">
                         {{ __('Materiales') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">

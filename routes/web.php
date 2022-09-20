@@ -6,6 +6,7 @@ use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\IncidenteController;
 use App\Http\Controllers\SalidaController;
 use App\Models\Incidente;
+use App\Http\Controllers\MaterialesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +52,9 @@ Route::post('/salida/{incidente}', [SalidaController::class, 'store'])->name('sa
 //** API 's */
 Route::get('/api/incidentes', [APIIncidentes::class, 'index'])->name('api.incidentes');
 
+/**Crear Materiales */
+Route::get('/materiales', [MaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('index.materiales');
+Route::get('/materiales/create', [MaterialesController::class, 'create'])->middleware(['auth', 'verified'])->name('materiales.create');
 
 
 require __DIR__ . '/auth.php';
