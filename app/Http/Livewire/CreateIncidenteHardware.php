@@ -62,9 +62,9 @@ class CreateIncidenteHardware extends Component
 
 
         //Crear un Mensaje
-        session()->flash('mensaje-incidente', 'El incidente se guardo correctamente');
+        session()->flash('mensaje', 'El incidente se guardo correctamente');
 
         //redireccionar al usuario
-        return redirect()->route('incidentes.create', 'hardware');
+        return redirect()->route('incidentes.show');
     }
 }

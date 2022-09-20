@@ -33,12 +33,13 @@ class CrearNuevoEquipo extends Component
             'descripcion' => $datos['descripcion'],
             'area_id' => $datos['area']
         ]);
-        $id = Equipo::latest('id')->first();
+        $equipo = Equipo::latest('id')->first();
+
 
         //mensaje flash
-        session()->flash('mensaje', 'Equipo Guargado');
+        session()->flash('mensaje', 'Equipo guardado correctamente');
 
-        return redirect()->route('incidentes.create.hardware', $id);
+        return redirect()->route('equipo.create.incidentes', $equipo);
     }
 
 

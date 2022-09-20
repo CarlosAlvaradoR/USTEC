@@ -69,8 +69,8 @@
                 <p><span class="font-bold text-green-800">Solucion: </span> {{$solucion->descripcion}}</p>
             </div>
             @empty
-            <div class="mt-2 p-3 bg-sky-400 border rounded-lg">
-                <p>Este incidente no tiene solucion</p>
+            <div class="mt-2 p-3 bg-orange-400 border rounded-lg">
+                <p class="text-white">Este incidente no tiene solucion</p>
             </div>
             @endforelse
 
