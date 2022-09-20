@@ -280,21 +280,17 @@ function mostrarGravedades(){
              
                     data: gravedades.map(gravedad => gravedad.total),
                     backgroundColor: [ 
-                        'rgb(20,184,166)',
-                        'rgb(234,179,8)',
-                        'rgb(239,68,68)',
+                        '#22c55e',
+                        '#eab308',
+                        '#ef4444',
                        
                        
                     ],
                     borderColor: [
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        
-                        
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        '#16a34a',
+                        '#ca8a04',
+                        '#dc2626',
+                    
                     ],
                     borderWidth: 1
                 }]
@@ -331,20 +327,18 @@ function mostrarAreas(){
                     label: '# of Votes', 
                     data: areas.map(area => area.total),
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        '#84cc16',
+                        '#f97316',
+                        '#06b6d4',
+                        '#eab308',
+                       
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        '#65a30d',
+                        '#d97706',
+                        '#0891b2',
+                        '#ca8a04',
+                       
                     ],
                     borderWidth: 1
                 }]
@@ -379,20 +373,32 @@ function mostrarTopEquipos(){
                 
                     data: topEquipos.map(equipo => equipo.total),
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        '#3b82f6',
+                        '#84cc16',
+                        '#ef4444',
+                        '#06b6d4',
+                        '#22c55e',
+                        '#f97316',
+                        '#10b981',
+                        '#6366f1',
+                        '#a855f7',
+                        '#14b8a6'
+
+
+                       
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        '#2563eb',
+                        '#65a30d',
+                        '#dc2626',
+                        '#0891b2',
+                        '#16a34a',
+                        '#ea580c',
+                        '#059669',
+                        '#4f46e5',
+                        '#9333ea',
+                        '#0d9488'
+                    
                     ],
                     borderWidth: 1
                 }]
@@ -408,7 +414,7 @@ function mostrarTopEquipos(){
                     },
                     title: {
                         display: true,    
-                        text: 'TOP 5 EQUIPOS CON MAS INTERVENCIONES'
+                        text: 'TOP 10 EQUIPOS CON MAS INTERVENCIONES'
                     }
                 }
             }

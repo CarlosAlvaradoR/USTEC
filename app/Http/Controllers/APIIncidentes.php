@@ -45,7 +45,7 @@ class APIIncidentes extends Controller
 
                 $sql = "SELECT e.nombre_equipo `equipo`, COUNT(`equipo_id`) AS `total` FROM `incidentes` i
                 inner join equipos e on e.id = i.equipo_id
-                GROUP BY `equipo` ORDER BY `total` DESC LIMIT 5;";
+                GROUP BY `equipo` ORDER BY `total` DESC LIMIT 10;";
 
                 $topEquipos = DB::select($sql);
 

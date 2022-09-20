@@ -45,7 +45,7 @@
 
         <div>
             <x-button class=" h-10 justify-center ">
-                {{ __('Buscar') }}
+                {{ __('Filtrar') }}
             </x-button>
         </div>
     </form>

@@ -8,24 +8,32 @@
     <div class="mt-5">
         {{-- @forelse ($equipos as $equipo) --}}
 
-        <div class="bg-gray-200 border rounded-lg p-4   md:flex md:justify-between ">
+        <div class="bg-gray-100 border rounded-lg p-4   md:flex md:justify-between ">
             <div>
                 <h2 class="font-bold text-xl">Equipo: <span class="font-normal">{{$equipo->nombre_equipo . ' ' .
                         $equipo->marca}}</span></h2>
                 <p class="text-gray-500 text-sm">{{$equipo->descripcion}}</p>
             </div>
             <div class="md:mt-0 mt-3">
-                <a class="bg-blue-600 hover:bg-blue-900 transition-colors text-white text-sm  px-5 py-2 rounded cursor-pointer uppercase w-full md:w-auto"
-                    href="{{route('equipo.create.incidentes',$equipo)}}">+ Nuevo Incidente</a>
+                <a class="flex items-center border rounded-lg  bg-blue-700 hover:bg-blue-800 transition-colors text-white text-sm  p-2 cursor-pointer  w-full md:w-auto"
+                    href="{{route('equipo.create.incidentes',$equipo)}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    Nuevo Incidente</a>
             </div>
         </div>
 
         <div class="bg-gray-100 border rounded-lg p-4 mt-2 ">
             <h2 class="font-bold text-xl">Historial</h2>
+            <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
             @forelse ($equipo->incidentes as $incidente)
             <div class="mt-5 md:flex md:justify-between ">
                 <div>
-                    <h2 class="font-bold text-lg ">{{$incidente->titulo}}</h2>
+
+                    <a href="{{route('show.incidente', $incidente)}}"
+                        class="font-bold text-lg ">{{$incidente->titulo}}</a>
                     <p class="text-gray-500 text-sm">{{$incidente->descripcion}}</p>
                     <span
                         class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
@@ -53,6 +61,15 @@
                     @endif
 
                 </div>
+
+            </div>
+            <div class="mt-2 p-3 bg-green-200 border rounded-lg">
+                @forelse ($incidente->solucion as $solucion)
+                <p><span class="font-bold text-green-800">Solucion: </span> {{$solucion->descripcion}}</p>
+                @empty
+                <p>Este incidente no tiene solucion</p>
+                @endforelse
+
 
             </div>
             <hr class="my-8 h-px bg-gray-200 border-0 dark:bg-gray-700">
