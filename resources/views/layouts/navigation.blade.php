@@ -15,8 +15,8 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    {{-- dropdown incidentes --}}
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    {{-- ** dropdown este incidentes no esta en uso--}}
+                    {{-- <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button
@@ -45,19 +45,58 @@
 
                             </x-slot>
                         </x-dropdown>
-                    </div>
+                    </div> --}}
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">
+
+                    <x-nav-link :href=" route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
+>>>>>>> mainor
                         {{ __('Incidentes') }}
+                        @if (auth()->user()->sinSolucionar() > 0)
+                        <span
+                            class=" ml-1  hover:animate-ping w-4 h-4 bg-blue-600 hover:bg-blue-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
+                            {{
+                            auth()->user()->sinSolucionar();}}</span>
+                        @endif
+
                     </x-nav-link>
                     <x-nav-link :href="route('index.materiales')" :active="request()->routeIs('')">
                         {{ __('Materiales') }}
                     </x-nav-link>
+
                     <x-nav-link :href="route('index.equipos')" :active="request()->routeIs('')">
                         {{ __('Equipos') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">
+                        {{ __('Equipos') }}
+                    </x-nav-link>
+                    <div class="inline-flex items-center">
+                        <button id=" dropdownDefault" data-dropdown-toggle="dropdown"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button">Crear Incidente<svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg></button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                            data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom"
+                            style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 610px);">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                                <li>
+                                    <a href="{{route('incidentes.create','hardware')}}"
+                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Hardware</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('incidentes.create','software')}}"
+                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Software</a>
+                                </li>
 
+                            </ul>
+                        </div>
+                    </div>
 
                 </div>
             </div>

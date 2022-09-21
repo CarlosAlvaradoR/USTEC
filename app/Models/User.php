@@ -43,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sinSolucionar()
+    {
+        $cant = Incidente::where('estado', '=', 0)->count();
+        return $cant;
+    }
+
+    public function Solucionado()
+    {
+        $cant = Incidente::where('estado', '=', 1)->count();
+        return $cant;
+    }
 }

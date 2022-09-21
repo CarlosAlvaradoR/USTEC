@@ -25,7 +25,8 @@
             @forelse ($equipo->incidentes as $incidente)
             <div class="mt-5 md:flex md:justify-between ">
                 <div>
-                    <h2 class="font-bold text-lg ">{{$incidente->descripcion}}</h2>
+                    <h2 class="font-bold text-lg ">{{$incidente->titulo}}</h2>
+                    <p class="text-gray-500 text-sm">{{$incidente->descripcion}}</p>
                     <span
                         class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-300">
                         <svg aria-hidden="true" class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20"
@@ -42,9 +43,9 @@
                 </div>
                 <div>
                     @if ( $incidente->estado === 0)
-                    <p
-                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">
-                        Sin solucionar</p>
+                    <a href="{{route('salida.index',$incidente )}}"
+                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900 cursor-pointer">
+                        Sin solucionar</a>
                     @else
                     <p
                         class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">

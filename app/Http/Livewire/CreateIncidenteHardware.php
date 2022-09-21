@@ -14,17 +14,18 @@ class CreateIncidenteHardware extends Component
 
     public $descripcion;
     // public $estado;
-    public $area;
+    //  public $area;
     public $gravedad;
     public $tipo;
     public $eq;
-
+    public $titulo;
     public $equipo;
 
     protected $rules = [
         'descripcion' => 'required|string',
-        'area' => 'required',
-        'gravedad' => 'required'
+        // 'area' => 'required',
+        'gravedad' => 'required',
+        'titulo' => 'required|string'
     ];
 
     public function mount(Equipo $equipo)
@@ -47,8 +48,11 @@ class CreateIncidenteHardware extends Component
         $datos = $this->validate();
         //s  dd($this->equipo->id . ' ' . $this->tipo);
         Incidente::create([
+
             'descripcion' => $datos['descripcion'],
-            'area_id' => $datos['area'],
+            'titulo' => $datos['titulo'],
+            // ** se dejo de usar area porque el equipo ya tiene la asociacion 
+            // 'area_id' => $datos['area'], 
             'importancia_id' => $datos['gravedad'],
             'tipo_id' =>  $this->tipo,
             'equipo_id' => $this->equipo->id,

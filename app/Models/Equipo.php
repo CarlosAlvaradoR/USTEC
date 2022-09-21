@@ -13,7 +13,8 @@ class Equipo extends Model
         'codigo',
         'nombre_equipo',
         'marca',
-        'descripcion'
+        'descripcion',
+        'area_id'
     ];
 
     public function __construct()
@@ -23,5 +24,10 @@ class Equipo extends Model
     public function incidentes()
     {
         return $this->hasMany(Incidente::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
     }
 }

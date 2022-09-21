@@ -1,12 +1,9 @@
 <div>
-    <div class=" p-2 border rounded-lg border-gray-400">
-        <h2 class="font-bold text-xl">Reportar incidente en: <span
-                class="font-normal text-gray-600">{{$equipo->nombre_equipo .'-' .
-                $equipo->marca}}</span> </h2>
-    </div>
+    <h2>Editar incidente en: {{$incidente->equipo->nombre_equipo . '-' . $incidente->equipo->marca}}</h2>
+
     <div class=" md:flex mt-3 p-4  border rounded-lg border-gray-400">
         <div class="md:w-full">
-            <form class="w-full  " wire:submit.prevent='crearIncidente' novalidate>
+            <form class="w-full  " wire:submit.prevent='editarIncidente' novalidate>
                 <div class=" w-full md:grid md:grid-cols-2 items-start gap-3 ">
                     <div>
                         <div>
@@ -23,8 +20,8 @@
 
                             <textarea wire:model="descripcion" id="descripcion" cols="30" rows="10"
                                 placeholder="Descripcion del incidente" class="rounded-md shadow-sm border-gray-300
-                       focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
-                       </textarea>
+                           focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
+                           </textarea>
                             @error('descripcion')
                             <livewire:mostrar-alerta :message='$message' />
                             @enderror
@@ -34,11 +31,11 @@
                     <div>
 
 
-                        <div class="mt-2">
+                        <div>
                             <x-label for="gravedad" :value="__('Gravedad')" />
 
                             <select wire:model="gravedad" id="gravedad" class="rounded-md shadow-sm border-gray-300
-                            focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
+                                focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
                                 <option value="">--Seleccione--</option>
                                 @foreach ($gravedades as $gravedad)
                                 <option value="{{$gravedad->id}}">{{$gravedad->importancia}}</option>
@@ -64,4 +61,5 @@
             </form>
         </div>
     </div>
+
 </div>
