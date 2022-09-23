@@ -49,7 +49,6 @@
 
 
                     <x-nav-link :href=" route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
->>>>>>> mainor
                         {{ __('Incidentes') }}
                         @if (auth()->user()->sinSolucionar() > 0)
                         <span
@@ -64,10 +63,6 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('index.equipos')" :active="request()->routeIs('')">
-                        {{ __('Equipos') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">
                         {{ __('Equipos') }}
                     </x-nav-link>
                     <div class="inline-flex items-center">

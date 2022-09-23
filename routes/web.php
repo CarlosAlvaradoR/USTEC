@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ShowUsers;
 use App\Http\Livewire\ShowMateriales;
 use App\Http\Livewire\ShowEquipos;
+use App\Http\Controllers\SalidaMaterialesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +85,11 @@ Route::post('salida/{incidente}', [SalidaController::class, 'store'])->name('sal
 Route::get('/perfil', [UserController::class, 'perfil'])->middleware(['auth', 'verified'])->name('perfil');
 Route::post('/perfil/change', [UserController::class, 'changeUser'])->middleware(['auth', 'verified'])->name('perfil.change');
 
+//************ Salidas Materiales */
+Route::get('/salida/materiales/{idSalida}/{opcional}', [SalidaMaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('salida.materiales.index');
+Route::post('/salidas/materiales', [SalidaMaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('salida.materiales.store');
+
+/********************* */
 //Usuarios
 Route::middleware(['auth', 'verified', 'admin'])->get('/users', ShowUsers::class)->name('users.index');
 //Route::get('/users', [ShowPosts::class],'render')->middleware(['auth', 'verified', 'admin'])->name('users.index');

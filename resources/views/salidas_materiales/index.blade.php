@@ -9,20 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-                    @if ($incidente->equipo)
-                        <h3 class="font-bold uppercase ">Intervencion para: <span
-                                class="lowercase text-gray-600">{{ $incidente->titulo . ' en ' . $incidente->equipo->nombre_equipo . ' - ' . $incidente->equipo->marca }}
-                            </span>
-
-                        </h3>
-                    @else
-                        <h3 class="font-bold uppercase ">Intervencion para: <span
-                                class="lowercase text-gray-600">{{ $incidente->titulo }}
-                            </span>
-                    @endif
-
-
+                    <h1>Lista de Materiales Usados para la solución</h1>
                 </div>
             </div>
 
@@ -31,24 +18,6 @@
 
                     <div class="md:flex md:justify-center ">
                         <div class="md:w-1/2 ">
-
-                            <form method="POST" action="{{ route('salida.store', $incidente) }}"
-                                class="m-auto flex flex-col justify-center">
-                                @csrf
-                                <div>
-                                    <x-label for="descripcion" :value="__('Descripción')" />
-                                    <textarea name="descripcion" id="descripcion" cols="30" rows="10" required
-                                        placeholder="Descripcion del equipo"
-                                        class="rounded-md shadow-sm border-gray-300
-                                        focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
-                                        </textarea>
-                                </div>
-                                <x-button class=" h-10 justify-center ">
-                                    {{ __('Guardar Solución') }}
-                                </x-button>
-
-
-                            </form>
 
                             <form action="{{ route('salida.materiales.store') }}" method="post">
                                 @csrf
@@ -107,30 +76,10 @@
 
 
                                                             <div class="flex">
-                                                                <div
-                                                                    class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
-                                                                    <a href="{{ route('materiales.create.stock', $material->id) }}"
-                                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                                                        title="Añadir Material">
-                                                                        <i class="fa-solid fa-plus"></i></a>
-
-                                                                </div>
-                                                                <div
-                                                                    class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
-                                                                    <a href="{{ route('materiales.diminish.stock', $material->id) }}"
-                                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                                                        title="Quitar Material">
-                                                                        <i class="fa-regular fa-square-minus"></i></a>
-
-                                                                </div>
-                                                                <div
-                                                                    class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
-                                                                    <a href="{{ route('materiales.edit', $material->id) }}"
-                                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                                                        title="Editar Material">
-                                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                                    </a>
-
+                                                                <div>
+                                                                    <button type="submit" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                                                        <i class="fa-solid fa-plus"></i>
+                                                                    </button>
                                                                 </div>
                                                             </div>
 
