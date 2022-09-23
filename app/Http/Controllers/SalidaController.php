@@ -27,8 +27,8 @@ class SalidaController extends Controller
 
         //actualizar estado de incidente
         Incidente::where('id', $request->incidente)->update(array('estado' => 1));
-        session()->flash('mensaje-incidente', 'Solucion Guardada');
+        session()->flash('mensaje', 'Solucion Guardada');
 
-        return redirect()->route('incidentes.create', 'hardware');
+        return redirect()->route('show.incidente', $request->incidente);
     }
 }
