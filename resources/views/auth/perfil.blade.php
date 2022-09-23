@@ -4,15 +4,15 @@
             {{ __('Actualizar Perfil') }}
         </h2>
     </x-slot>
-    <div class="flex flex-col ">
-        <div class="p-4 ">
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 ">
-                <div class="overflow-hidden shadow-sm sm:rounded-lg bg-white">
+    <div class="flex flex-col md:flex-row gap-4 justify-between items-start p-6  ">
+        <div class="w-full">
+            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 ">
+                <div class="overflow-hidden shadow-sm rounded-lg bg-white">
                     <div class="bg-blue-700 p-4">
                         <h1 class="text-xl text-white font-bold text-center ">Información personal</h1>
                     </div>
-                    <div class=" md:flex md:justify-center ">
-                        <div class="md:w-1/2 ">
+                    <div class=" md:flex md:justify-center p-2">
+                        <div class="md:w-2/3 ">
                             @if (session('notification'))
                             <div id="alert-3" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200"
                                 role="alert">
@@ -39,7 +39,7 @@
                                 </button>
                             </div>
                             @endif
-                            <form class="space-y-3 p-2" action="{{ route('materiales.store') }}" method="POST">
+                            <form class="space-y-3 py-2" action="{{ route('materiales.store') }}" method="POST">
                                 @csrf
                                 <div>
                                     <x-label for="password_actual" :value="__('Nombre de Usuario')" />
@@ -100,15 +100,15 @@
             </div>
 
         </div>
-        <div class=" p-4">
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-                <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="w-full">
+            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+                <div class=" overflow-hidden shadow-sm rounded-lg">
                     <div class=" bg-white border-b border-gray-200">
                         <div class="bg-blue-700 p-4">
                             <h1 class="text-xl text-white font-bold text-center ">Cambiar Contraseña</h1>
                         </div>
-                        <div class=" md:flex md:justify-center ">
-                            <div class="md:w-1/2 ">
+                        <div class=" md:flex md:justify-center p-2">
+                            <div class="md:w-2/3 ">
                                 @if (session('notificationPassword'))
                                 <div id="alert-3" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200"
                                     role="alert">
@@ -136,7 +136,7 @@
                                     </button>
                                 </div>
                                 @endif
-                                <form class="space-y-3 p-2" action="{{ route('perfil.change') }}" method="POST">
+                                <form class="space-y-3 py-2" action="{{ route('perfil.change') }}" method="POST">
                                     @csrf
                                     <div>
                                         <x-label for="password_actual" :value="__('Password Actual')" />
