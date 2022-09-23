@@ -57,10 +57,10 @@
                         @endif
 
                     </x-nav-link>
-                    <x-nav-link :href="route('index.materiales')" :active="request()->routeIs('')">
+                    <x-nav-link :href="route('index.materiales')" :active="request()->routeIs('index.materiales')">
                         {{ __('Materiales') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('index.equipos')" :active="request()->routeIs('')">
+                    <x-nav-link :href="route('index.equipos')" :active="request()->routeIs('index.equipos')">
                         {{ __('Equipos') }}
                     </x-nav-link>
                     <div class="inline-flex items-center">
