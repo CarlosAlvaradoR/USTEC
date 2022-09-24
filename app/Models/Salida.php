@@ -20,4 +20,11 @@ class Salida extends Model
     {
         return $this->belongsTo(Incidente::class);
     }
+
+
+    public function material()
+    {
+        //return $this->belongsToMany('App\Role', 'role_user', 'userId', 'roleId');
+        return $this->belongsToMany(Materiales::class, 'usos', 'salida_id', 'material_id')->withPivot('cantidad');
+    }
 }
