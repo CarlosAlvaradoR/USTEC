@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('incidentes', function (Blueprint $table) {
             $table->string('descripcion');
-            $table->integer('estado')->default(0);
+            $table->integer('estado')->default(2);
             $table->foreignId('area_id')->nullable()->constrained();
             //**tambien es gravedad
             $table->foreignId('importancia_id')->constrained();

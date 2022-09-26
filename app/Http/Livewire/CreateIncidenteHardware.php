@@ -51,8 +51,9 @@ class CreateIncidenteHardware extends Component
 
             'descripcion' => $datos['descripcion'],
             'titulo' => $datos['titulo'],
-            // ** se dejo de usar area porque el equipo ya tiene la asociacion 
-            // 'area_id' => $datos['area'], 
+            // ** se coloca el area donde esta el equipo
+
+            'area_id' => $this->equipo->area_id,
             'importancia_id' => $datos['gravedad'],
             'tipo_id' =>  $this->tipo,
             'equipo_id' => $this->equipo->id,
@@ -61,9 +62,9 @@ class CreateIncidenteHardware extends Component
 
 
         //Crear un Mensaje
-        session()->flash('mensaje-incidente', 'El incidente se guardo correctamente');
+        session()->flash('mensaje', 'El incidente se guardo correctamente');
 
         //redireccionar al usuario
-        return redirect()->route('incidentes.create', 'hardware');
+        return redirect()->route('incidentes.show');
     }
 }

@@ -36,9 +36,8 @@ class SalidaController extends Controller
         $ultimoIdSalida = DB::select('SELECT s.id FROM salidas s order by id desc limit 1');
         //actualizar estado de incidente
         Incidente::where('id', $request->incidente)->update(array('estado' => 1));
-        /*session()->flash('mensaje-incidente', 'Solucion Guardada');*/
+        session()->flash('mensaje', 'Solucion Guardada');
 
-        //return $ultimoIdSalida[0]->id;
-        return redirect()->route('salida.materiales.index', [$ultimoIdSalida[0]->id]);
+        return redirect()->route('show.incidente', $request->incidente);
     }
 }

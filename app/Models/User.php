@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function sinSolucionar()
     {
-        $cant = Incidente::where('estado', '=', 0)->count();
+        $cant = Incidente::where('estado', '=', 2)->count();
         return $cant;
     }
 

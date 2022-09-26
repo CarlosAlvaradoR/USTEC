@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h1 class="text-xl font-bold text-center mb-10">Editar Equipo</h1>
@@ -19,7 +19,8 @@
                                     <x-label for="codigo" :value="__('Código Patrimonial')" />
 
                                     <x-input name="codigo" class="block mt-1 w-full" type="text"
-                                        placeholder="Ingrese código patrimonial" value="{{old('codigo', $equipo->codigo)}}" required autofocus />
+                                        placeholder="Ingrese código patrimonial"
+                                        value="{{old('codigo', $equipo->codigo)}}" required autofocus />
 
                                     <div id="alert-border-1" class=" mt-2 flex p-4 mb-4 bg-red-100 dark:bg-red-200"
                                         role="alert">
@@ -40,22 +41,23 @@
                                     <x-label for="nombre_equipo" :value="__('Nombre Equipo')" />
 
                                     <x-input name="nombre_equipo" class="block mt-1 w-full" type="text"
-                                         placeholder="Nombre del Equipo" value="{{old('nombre_equipo', $equipo->nombre_equipo)}}"
-                                        required autofocus />
+                                        placeholder="Nombre del Equipo"
+                                        value="{{old('nombre_equipo', $equipo->nombre_equipo)}}" required autofocus />
                                 </div>
                                 <div>
                                     <x-label for="marca" :value="__('Marca')" />
 
                                     <x-input name="marca" class="block mt-1 w-full" type="text"
-                                        placeholder="Marca del Equipo" value="{{old('marca', $equipo->marca)}}" required autofocus />
-                                    
+                                        placeholder="Marca del Equipo" value="{{old('marca', $equipo->marca)}}" required
+                                        autofocus />
+
                                 </div>
 
                                 <div>
                                     <x-label for="descripcion" :value="__('Descripción')" />
 
-                                    <textarea name="descripcion" cols="30" rows="10" placeholder="Descripcion del equipo"
-                                        class="rounded-md shadow-sm border-gray-300
+                                    <textarea name="descripcion" cols="30" rows="10"
+                                        placeholder="Descripcion del equipo" class="rounded-md shadow-sm border-gray-300
                                    focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
                                    {{old('marca', $equipo->descripcion)}}
                                    </textarea>

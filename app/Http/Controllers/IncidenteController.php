@@ -20,25 +20,42 @@ class IncidenteController extends Controller
      */
     public function index()
     {
-        //Area con mas interveciones Software
-        $sql = "SELECT `area_id`, COUNT(`area_id`) AS `area` FROM `incidentes` GROUP BY `area_id` ORDER BY `area` DESC LIMIT 1";
-        $areaMay =  DB::select($sql);
-        $areaMayorS = Area::find($areaMay[0]->area_id);
-        $cantidadAreaS = $areaMay[0]->area;
+
+        //** Total tipo uno y dos */
+        $totalTipoUno = Incidente::where('tipo_id', 1)->count();
+        $totalTipoDos = Incidente::where('tipo_id', 2)->count();
+        //Area con mas interveciones Software y el total de intervenciones
+        $sql = "area_id, COUNT(area_id) as area ";
+        // $areaMay =  DB::select($sql);
+        $areaMayorSoft = DB::table('incidentes')->join('areas', 'areas.id', '=', 'incidentes.area_id')->select('areas.area', DB::raw('count(*) as total'))->where('tipo_id', '=', 1)->groupBy('area_id')->orderByDesc("total")->first();
+
+        // dd($areaMayor->total);
+        // $areaMayorS = Area::find($areaMay[0]->area_id);
+        // $cantidadAreaS = $areaMay[0]->area;
+
+
+        //**Area con mas interveciones Hard y el total de intervenciones
+
+        $areaMayorHard = DB::table('incidentes')->join('areas', 'areas.id', '=', 'incidentes.area_id')->select('areas.area', DB::raw('count(*) as total'))->where('tipo_id', '=', 2)->groupBy('area_id')->orderByDesc("total")->first();
 
         //Equipo con mas incidentes mas area
-        $sq = "SELECT `equipo_id`, COUNT(`equipo_id`) AS `equipo` FROM `incidentes` GROUP BY `equipo_id` ORDER BY `equipo` DESC LIMIT 1";
-        $equipoMay =  DB::select($sq);
-        $equipoMayor = Equipo::find($equipoMay[0]->equipo_id);
-        $cantidadEq = $equipoMay[0]->equipo;
+        $equipoMayor = DB::table('incidentes')->join('equipos', 'equipos.id', '=', 'incidentes.equipo_id')->select('equipos.nombre_equipo', DB::raw('count(*) as total'))->groupBy('equipo_id')->orderByDesc("total")->first();
+        // dd($equipoMayor);
+        // $sq = "SELECT `equipo_id`, COUNT(`equipo_id`) AS `equipo` FROM `incidentes` GROUP BY `equipo_id` ORDER BY `equipo` DESC LIMIT 1";
+        // $equipoMay =  DB::select($sq);
+        // $equipoMayor = Equipo::find($equipoMay[0]->equipo_id);
+        // $cantidadEq = $equipoMay[0]->equipo;
 
         $incidentes = Incidente::all();
         return view('home.dashboard', [
             'incidentes' => $incidentes,
-            'areaMayorS' => $areaMayorS,
-            'cantidadAreaS' => $cantidadAreaS,
+            'areaMayorSoft' => $areaMayorSoft,
+            'areaMayorHard' => $areaMayorHard,
+
             'equipoMayor' => $equipoMayor,
-            'cantidadEq' => $cantidadEq
+
+            'totalTipoUno' => $totalTipoUno,
+            'totalTipoDos' => $totalTipoDos
         ]);
     }
 
