@@ -1,7 +1,10 @@
-<div>
-    <div class="md:flex md:justify-center gap-3 ">
+<div id="solucion">
+    <h3 class="flex text-xl text-gray-700">
+        Agregar Solución</h3>
+    <div class="md:flex md:justify-center gap-5 items-center mt-2">
+
         <div class="md:w-1/2 ">
-            <h3>Seleccionar Materiales</h3>
+            <h3>Seleccionar Materiales (opcional)</h3>
             <div class="mt-1">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Buscar</label>
@@ -39,7 +42,7 @@
                                 Stock
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Acciones
+                                Agregar
                             </th>
                         </tr>
                     </thead>
@@ -92,12 +95,12 @@
             <form method="POST" action="{{route('salida.store',$incidente)}}"
                 class="m-auto flex flex-col justify-center">
                 @csrf
-                <div id="materiales">
-
+                <div id="materiales" class="border-l-2 p-3 mb-2">
+                    <p class="text-gray-600">No hay materiales agregados</p>
                 </div>
                 <div>
                     <x-label for="descripcion" :value="__('Descripción')" />
-                    <textarea name="descripcion" id="descripcion" cols="30" rows="10" required
+                    <textarea name="descripcion" id="descripcion" cols="10" rows="4" required
                         placeholder="Descripcion del equipo" class="rounded-md shadow-sm border-gray-300
                         focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
                         </textarea>
@@ -147,12 +150,14 @@ function mostrarSeleccion() {
 
       const ic = document.createElement("I");
       ic.classList.add("fas");
-      ic.classList.add("fa-plus-circle");
+      ic.classList.add("fa-minus-circle");
+      ic.classList.add("text-red-600");
       const texto = document.createElement("SPAN");
       texto.textContent = "Quitar";
 
 
         const material = document.createElement("P");
+        material.classList.add("text-gray-600");
         material.textContent = sel.nombre
     
        // material.setAttribute("name", 'material_id-' + sel.id);
@@ -164,14 +169,25 @@ function mostrarSeleccion() {
         inputCantidad.setAttribute("max", sel.stock);
         inputCantidad.setAttribute("min", 1);
         inputCantidad.setAttribute("name",  'cantidad'+ '-'+sel.id);
+        inputCantidad.classList.add('rounded-md')
+        inputCantidad.classList.add('shadow-sm')
+        inputCantidad.classList.add('border-gray-300')
+        inputCantidad.classList.add('w-20')
     
         btnQuitar.appendChild(ic);
-        contenedorSel.appendChild(btnQuitar)
+
+        const conten = document.createElement("DIV");
+        conten.classList.add('flex')
+        conten.classList.add('gap-1')
+        conten.appendChild(btnQuitar)
       
-        contenedorSel.appendChild(material)
+        conten.appendChild(material)
+        contenedorSel.appendChild(conten)
         contenedorSel.appendChild(inputCantidad)
         contenedorSel.classList.add('flex')
         contenedorSel.classList.add('justify-between')
+        contenedorSel.classList.add('items-center')
+        contenedorSel.classList.add('mb-2')
         content.appendChild(contenedorSel)
         
     });
