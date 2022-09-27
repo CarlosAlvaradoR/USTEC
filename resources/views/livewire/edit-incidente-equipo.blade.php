@@ -1,7 +1,9 @@
 <div>
-    <h2>Editar incidente en: {{$incidente->equipo->nombre_equipo . '-' . $incidente->equipo->marca}}</h2>
-
-    <div class=" md:flex mt-3 p-4  border rounded-lg border-gray-400">
+    <div class="w-full p-6 bg-white">
+        <h2 class="font-semibold text-xl text-gray-800">Editar incidente en: {{$incidente->equipo->nombre_equipo . '-' .
+            $incidente->equipo->marca}}</h2>
+    </div>
+    <div class=" md:flex mt-3 p-4  ">
         <div class="md:w-full">
             <form class="w-full  " wire:submit.prevent='editarIncidente' novalidate>
                 <div class=" w-full md:grid md:grid-cols-2 items-start gap-3 ">

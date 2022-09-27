@@ -24,7 +24,7 @@ use App\Http\Livewire\ShowEquipos;
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return view('welcome');
 });
 
 Route::get('/dashboard', [IncidenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');

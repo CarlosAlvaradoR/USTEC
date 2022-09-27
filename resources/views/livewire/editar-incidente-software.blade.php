@@ -1,7 +1,7 @@
 <div>
     <div>
-        <div class=" p-2 border rounded-lg border-gray-400">
-            <h2 class="font-bold text-xl">Editar Incidente Software <span class="font-normal text-gray-600"></span>
+        <div class="w-full p-6 bg-white">
+            <h2 class="font-semibold text-xl text-gray-800">Editar Incidente Software
             </h2>
         </div>
         @if (session()->has('mensaje-incidente'))
@@ -17,7 +17,7 @@
             </div>
         </div>
         @endif
-        <div class=" md:flex mt-3 p-4  border rounded-lg border-gray-400">
+        <div class=" md:flex mt-3 p-4 ">
             <div class="md:w-full">
                 <form class="w-full  " wire:submit.prevent='editarIncidente' novalidate>
                     <div class=" w-full md:grid md:grid-cols-2 items-start gap-3 ">
