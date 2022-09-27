@@ -11,6 +11,8 @@
                     $equipo->marca}}</h2>
                 <p class="text-gray-500 text-sm">{{$equipo->descripcion}}</p>
             </div>
+            @auth
+
             <div class="md:mt-0 mt-3">
                 <a class="flex items-center border rounded-lg  bg-blue-700 hover:bg-blue-800 transition-colors text-white text-sm  p-2 cursor-pointer  w-full md:w-auto"
                     href="{{route('equipo.create.incidentes',$equipo)}}">
@@ -20,6 +22,7 @@
                     </svg>
                     Nuevo Incidente</a>
             </div>
+            @endauth
         </div>
         <hr class="my-2 h-px bg-gray-200 border-0 dark:bg-gray-700">
         <div class=" mt-6">
@@ -138,21 +141,27 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">{{session('mensaje')}}!</span> <a href="{{route('create.equipo')}}"
+                <span class="font-medium">{{session('mensaje')}}!</span>
+                @auth
+
+                <a href="{{route('create.equipo')}}"
                     class="font-semibold underline hover:text-blue-800 dark:hover:text-blue-900">Crea uno
                     nuevo aqui</a>.
+                @endauth
             </div>
         </div>
 
 
         @else
-
+        @auth
         <div class="p-6">
             <p class="text-gray-500 ">¿No encuentras el equipo?
                 <a href="{{route('create.equipo')}}" class="text-blue-600 cursor-pointer underline">Crea uno
                     nuevo aqui</a>
             </p>
         </div>
+        @endauth
+
 
         @endif
     </div>

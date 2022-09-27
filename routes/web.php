@@ -3,6 +3,7 @@
 use App\Http\Controllers\APIIncidentes;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HardwareController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncidenteController;
 use App\Http\Controllers\SalidaController;
 use App\Models\Incidente;
@@ -23,9 +24,7 @@ use App\Http\Livewire\ShowEquipos;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',  [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [IncidenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
