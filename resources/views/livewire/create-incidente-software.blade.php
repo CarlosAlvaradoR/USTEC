@@ -1,6 +1,6 @@
 <div>
-    <div class=" p-2 border rounded-lg border-gray-400">
-        <h2 class="font-bold text-xl">Reportar Incidente Software <span class="font-normal text-gray-600"></span> </h2>
+    <div class="w-full p-6 bg-white">
+        <h2 class="font-semibold text-xl text-gray-800">Reportar Incidente Software </h2>
     </div>
     @if (session()->has('mensaje-incidente'))
     <div id="alert-additional-content-3"
@@ -15,7 +15,7 @@
         </div>
     </div>
     @endif
-    <div class=" md:flex mt-3 p-4  border rounded-lg border-gray-400">
+    <div class=" md:flex mt-3 p-4  ">
         <div class="md:w-full">
             <form class="w-full  " wire:submit.prevent='crearIncidente' novalidate>
                 <div class=" w-full md:grid md:grid-cols-2 items-start gap-3 ">
@@ -32,7 +32,7 @@
                         <div class="mt-2">
                             <x-label for="descripcion" :value="__('Descripción')" />
 
-                            <textarea wire:model="descripcion" id="descripcion" cols="30" rows="10"
+                            <textarea wire:model="descripcion" id="descripcion" cols="20" rows="5"
                                 placeholder="Descripcion del incidente" class="rounded-md shadow-sm border-gray-300
                        focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
                        </textarea>
@@ -76,7 +76,7 @@
 
                         <div class=" mt-4">
                             <x-button
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full justify-center px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
                                 {{ __('Guardar') }}
                             </x-button>
                         </div>

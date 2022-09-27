@@ -21,7 +21,8 @@
                         <div class="mt-4">
                             <x-label for="descripcion" :value="__('Descripción')" />
 
-                            <textarea wire:model="descripcion" id="descripcion" placeholder="Descripcion del incidente"
+                            <textarea wire:model="descripcion" id="descripcion" cols="20" rows="5"
+                                placeholder="Descripcion del incidente"
                                 class="rounded-md shadow-sm border-gray-300
                                       focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full h-48">
                              </textarea>
