@@ -27,7 +27,7 @@ class IncidenteController extends Controller
         //Area con mas interveciones Software y el total de intervenciones
         $sql = "area_id, COUNT(area_id) as area ";
         // $areaMay =  DB::select($sql);
-        $areaMayorSoft = DB::table('incidentes')->join('areas', 'areas.id', '=', 'incidentes.area_id')->select('areas.area', DB::raw('count(*) as total'))->where('tipo_id', '=', 1)->groupBy('area_id')->orderByDesc("total")->first();
+        $areaMayorSoft = DB::table('incidentes')->join('areas', 'areas.id', '=', 'incidentes.area_id')->select('areas.area', DB::raw('count(*) as total'))->where('tipo_id', '=', 2)->groupBy('area_id')->orderByDesc("total")->first();
 
         // dd($areaMayor->total);
         // $areaMayorS = Area::find($areaMay[0]->area_id);
@@ -36,7 +36,7 @@ class IncidenteController extends Controller
 
         //**Area con mas interveciones Hard y el total de intervenciones
 
-        $areaMayorHard = DB::table('incidentes')->join('areas', 'areas.id', '=', 'incidentes.area_id')->select('areas.area', DB::raw('count(*) as total'))->where('tipo_id', '=', 2)->groupBy('area_id')->orderByDesc("total")->first();
+        $areaMayorHard = DB::table('incidentes')->join('areas', 'areas.id', '=', 'incidentes.area_id')->select('areas.area', DB::raw('count(*) as total'))->where('tipo_id', '=', 1)->groupBy('area_id')->orderByDesc("total")->first();
 
         //Equipo con mas incidentes mas area
         $equipoMayor = DB::table('incidentes')->join('equipos', 'equipos.id', '=', 'incidentes.equipo_id')->select('equipos.nombre_equipo', DB::raw('count(*) as total'))->groupBy('equipo_id')->orderByDesc("total")->first();

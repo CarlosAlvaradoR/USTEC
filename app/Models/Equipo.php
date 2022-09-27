@@ -23,7 +23,7 @@ class Equipo extends Model
 
     public function incidentes()
     {
-        return $this->hasMany(Incidente::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Incidente::class)->orderBy('created_at', 'DESC')->take(5);
     }
 
     public function area()
