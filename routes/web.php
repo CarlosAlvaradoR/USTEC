@@ -7,12 +7,8 @@ use App\Http\Controllers\IncidenteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalidaController;
 use App\Models\Incidente;
-use App\Http\Controllers\SalidaController;
-use App\Models\Incidente;
 use App\Http\Controllers\MaterialesController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\ShowUsers;
 use App\Http\Livewire\ShowMateriales;
 use App\Http\Livewire\ShowEquipos;
 use App\Http\Controllers\SalidaMaterialesController;
@@ -116,9 +112,6 @@ Route::post('/salidas/materiales', [SalidaMaterialesController::class, 'store'])
 
 /********************* */
 //Usuarios
-Route::middleware(['auth', 'verified', 'admin'])->get('/users', ShowUsers::class)->name('users.index');
-//Route::get('/users', [ShowPosts::class],'render')->middleware(['auth', 'verified', 'admin'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'verified', 'admin'])->name('users.create');
-Route::delete('/users/delete/{idUser}', [UserController::class, 'destroy'])->middleware(['auth', 'verified', 'admin'])->name('users.destroy');
+require __DIR__ . '/users.php';
 
 require __DIR__ . '/auth.php';

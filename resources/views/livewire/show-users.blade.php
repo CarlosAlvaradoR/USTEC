@@ -136,7 +136,7 @@
 
                                         <div
                                             class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
-                                            <a href=""
+                                            <a href="{{ route('users.edit', $user->id) }}"
                                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                                 title="Editar información del usuario">
                                                 <i class="fa-solid fa-pen-to-square"></i>
