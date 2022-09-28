@@ -45,7 +45,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-6 bg-white border-b border-gray-200 flex justify-between">
+                <div class="p-6 bg-white border-b border-gray-200 flex justify-between flex-col md:flex-row ">
 
                     <div>
                         <h3 class="text-xl flex gap-1 text-gray-800 "><svg xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@
                     <div>
                         @if ( $incidente->estado === 2)
                         <a href="#solucion"
-                            class="bg-blue-600 text-white text-xs font-semibold mr-2 px-2 py-1 rounded dark:bg-green-200  cursor-pointer">
+                            class="bg-blue-600 text-white text-xs font-semibold mr-2 px-2 py-1 rounded dark:bg-green-200  cursor-pointer sm:p-3 ">
                             Solucionar Ahora</a>
                         @else
 
@@ -133,7 +133,7 @@
                 @if ($incidente->equipo)
                 <div class="p-6 bg-white border-b border-gray-200 ">
                     <div class=" md:flex md:justify-between gap-5">
-                        <div class="md:w-1/2 flex justify-between items-start">
+                        <div class="md:w-1/2 flex justify-between items-start flex-col md:flex-row ">
                             <div>
                                 <h3 class="text-xl flex gap-1"><span class="font-bold text-lg text-gray-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -154,7 +154,7 @@
 
 
                             </div>
-                            <div>
+                            <div class="mt-3 mb-2 md:mt-0 md:mb-0">
                                 <p class="flex gap-1 text-sm"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"

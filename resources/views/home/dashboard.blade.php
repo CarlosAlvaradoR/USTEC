@@ -204,7 +204,7 @@
 
 function mostrarTipos(){
 
-    const monthNames = ["January", "February", "March", "April", "May", "June","July", "August","September", "October", "November", "December"];
+    const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio","Julio", "Agosto","Septiembre", "Octubre", "Noviembre", "Deciembre"];
 
     getLongMonthName = function(date) {
             return monthNames[date];

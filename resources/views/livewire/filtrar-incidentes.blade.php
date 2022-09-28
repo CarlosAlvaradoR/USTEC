@@ -1,6 +1,6 @@
-<div class=" w-full p-4 bg-white flex gap-1">
+<div class=" w-full p-4 bg-white flex   gap-1  ">
 
-    <form wire:submit.prevent='leerDatosFormulario' class="flex-1 grid grid-cols-4 gap-1">
+    <form wire:submit.prevent='leerDatosFormulario' class="flex-1 grid grid-cols-1  md:grid-cols-4 gap-1 ">
 
         <div>
 

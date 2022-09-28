@@ -4,7 +4,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- mensaje si se creo por primera vez --}}
-                    <div class="py-2 flex justify-between">
+                    <div class="py-2 flex justify-between flex-col md:flex-row">
                         <h3 class="text-xl flex gap-1 font-bold text-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">

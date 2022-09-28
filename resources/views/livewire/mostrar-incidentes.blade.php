@@ -1,7 +1,8 @@
 <div>
-    <div class=" mt-2 overflow-x-auto relative shadow-md sm:rounded-lg">
+    <livewire:filtrar-incidentes>
+        <div class=" mt-2 overflow-x-auto relative shadow-md sm:rounded-lg">
 
-        <livewire:filtrar-incidentes>
+
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
@@ -47,7 +48,7 @@
                         <td class="py-4 px-6">
                             {{$incidente->tipo->tipo}}
                         </td>
-                        <td class="py-4 px-6 space-x-1">
+                        <td class="py-4 px-6 space-x-1 flex gap-2">
 
                             <a href="{{route('show.incidente', $incidente)}}"
                                 class="font-medium text-black-600 dark:text-black-900 hover:underline">Ver</a>
@@ -77,11 +78,11 @@
 
 
             </table>
-    </div>
-    <div class=" mt-2">
-        {{$incidentes->links()}}
+        </div>
+        <div class=" mt-2">
+            {{$incidentes->links()}}
 
-    </div>
+        </div>
 </div>
 
 

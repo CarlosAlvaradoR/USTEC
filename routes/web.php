@@ -56,7 +56,7 @@ Route::post('/salida/{incidente}', [SalidaController::class, 'store'])->name('sa
 //** API 's */
 Route::get('/api/incidentes', [APIIncidentes::class, 'index'])->name('api.incidentes');
 
-//Mostrar Equipo
+//Mostrar Equipos
 Route::middleware(['auth', 'verified'])->get('/equipos', ShowEquipos::class)->name('index.equipos');
 //Route::get('/equipos', [EquipoController::class, 'index'])->middleware(['auth', 'verified'])->name('index.equipos');
 

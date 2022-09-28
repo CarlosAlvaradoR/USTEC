@@ -96,12 +96,15 @@
                     </div>
 
                     @endauth
+                    @guest
+
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Consulta') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('')">
                         {{ __('Acerca de') }}
                     </x-nav-link>
+                    @endguest
                 </div>
             </div>
 
@@ -128,9 +131,12 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @guest
+
                         <x-dropdown-link :href="route('login')">
                             {{ __('Log in') }}
                         </x-dropdown-link>
+                        @endguest
                         @auth
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -175,9 +181,47 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @auth
+
+
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href=" route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
+                {{ __('Incidentes') }}
+                @if (auth()->user()->sinSolucionar() > 0)
+                <span
+                    class=" ml-1  hover:animate-ping w-4 h-4 bg-blue-600 hover:bg-blue-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
+                    {{
+                    auth()->user()->sinSolucionar();}}</span>
+                @endif
+
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('index.materiales')" :active="request()->routeIs('index.materiales')">
+                {{ __('Materiales') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('index.equipos')" :active="request()->routeIs('index.equipos')">
+                {{ __('Equipos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('incidentes.create','hardware')"
+                :active="request()->routeIs('incidentes.create','hardware')">
+                {{ __('Incidente Hardware') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('incidentes.create','software')"
+                :active="request()->routeIs('incidentes.create','software')">
+                {{ __('Incidente Software') }}
+            </x-responsive-nav-link>
+            @endauth
+            @guest
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Consulta') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('acerca')" :active="request()->routeIs('acerca')">
+                {{ __('Acerca de') }}
+            </x-responsive-nav-link>
+            @endguest
+
+
         </div>
 
         <!-- Responsive Settings Options -->
@@ -189,15 +233,31 @@
             </div>
             @endauth
             <div class="mt-3 space-y-1">
+                @guest
+
+                <x-dropdown-link :href="route('login')">
+                    {{ __('Log in') }}
+                </x-dropdown-link>
+                @endguest
                 <!-- Authentication -->
+                @auth
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
+                    <x-dropdown-link :href="route('perfil')">
+                        {{ __('Mi perfil') }}
+                    </x-dropdown-link>
+                    @if (Auth::user()->role == 'admin')
+                    <x-dropdown-link :href="route('users.index')">
+                        {{ __('Administrar Usuarios') }}
+                    </x-dropdown-link>
+                    @endif
                     <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                @endauth
             </div>
         </div>
     </div>
