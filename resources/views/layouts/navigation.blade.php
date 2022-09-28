@@ -216,7 +216,7 @@
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Consulta') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('acerca')" :active="request()->routeIs('acerca')">
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('')">
                 {{ __('Acerca de') }}
             </x-responsive-nav-link>
             @endguest
