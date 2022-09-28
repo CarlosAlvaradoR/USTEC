@@ -16,6 +16,8 @@ class ShowEquipos extends Component
     {
         $equipos = Equipo::where('codigo','like','%'.$this->search.'%')
         ->orWhere('nombre_equipo', 'like', '%'.$this->search.'%')
+        ->orWhere('marca', 'like', '%'.$this->search.'%')
+        ->orWhere('descripcion', 'like', '%'.$this->search.'%')
         ->orderBy('id', 'desc')
         ->paginate(5);
 

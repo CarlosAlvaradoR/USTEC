@@ -26,7 +26,7 @@
                                 <div>
                                     <x-label for="stock" :value="__('Cantidad')" />
 
-                                    <x-input id="stock" name="stock" class="block mt-1 w-full" type="text"
+                                    <x-input id="stock" name="stock" class="block mt-1 w-full" type="number"
                                         placeholder="Ingrese la cantidad del producto"
                                         value="{{old('nombre',$material->stock)}}" required autofocus />
                                 </div>
