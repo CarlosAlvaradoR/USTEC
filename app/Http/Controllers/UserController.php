@@ -65,6 +65,9 @@ class UserController extends Controller
 
     public function edit($id){
         $user=User::findOrFail($id);
+        if ($user->role == 'admin') {
+            return redirect()->route('users.index');
+        }
         return view('users.edit', compact('user'));
     }
 
@@ -72,7 +75,7 @@ class UserController extends Controller
         //return $request;
         $this->validate($request,[
             'name'=>'required|min:3',
-            'email'=>'required|string|unique:users,email,'.$id
+            'email'=>'required|string|email|unique:users,email,'.$id
         ]);
         
         $user= User::find($id);
@@ -86,12 +89,13 @@ class UserController extends Controller
 
     public function destroy($id){
         $user = User::findOrFail($id);
+        
         if ($user->status == 1) { //El usuario está activo
             $user->status= 0;
-            $mensaje ="El usuario $user->name de deshabilitó correctamente";
+            $mensaje ="El usuario $user->name se deshabilitó correctamente";
         }else {
             $user->status = 1;
-            $mensaje ="El usuario $user->name de habilitó correctamente";
+            $mensaje ="El usuario $user->name se habilitó correctamente";
         }
         
         $user->save();
