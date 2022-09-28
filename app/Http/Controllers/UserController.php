@@ -63,14 +63,39 @@ class UserController extends Controller
         }
     }
 
+    public function edit($id){
+        $user=User::findOrFail($id);
+        if ($user->role == 'admin') {
+            return redirect()->route('users.index');
+        }
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id){
+        //return $request;
+        $this->validate($request,[
+            'name'=>'required|min:3',
+            'email'=>'required|string|email|unique:users,email,'.$id
+        ]);
+        
+        $user= User::find($id);
+        $user->name=$request->name;
+        $user->email=$request->email;
+
+        $user->save();
+        $notification='Información de usuario actualizada correctamente';
+        return redirect()->route('users.index')->with(compact('notification'));
+    }
+
     public function destroy($id){
         $user = User::findOrFail($id);
+        
         if ($user->status == 1) { //El usuario está activo
             $user->status= 0;
-            $mensaje ="El usuario $user->name de deshabilitó correctamente";
+            $mensaje ="El usuario $user->name se deshabilitó correctamente";
         }else {
             $user->status = 1;
-            $mensaje ="El usuario $user->name de habilitó correctamente";
+            $mensaje ="El usuario $user->name se habilitó correctamente";
         }
         
         $user->save();

@@ -11,6 +11,8 @@ class ShowMateriales extends Component
     use WithPagination;
 
     public $search;
+    
+    protected $listeners = ['render'];
 
     public function render()
     {

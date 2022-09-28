@@ -5,14 +5,14 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IncidenteController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalidaController;
 use App\Models\Incidente;
 use App\Http\Controllers\MaterialesController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\ShowUsers;
 use App\Http\Livewire\ShowMateriales;
 use App\Http\Livewire\ShowEquipos;
+use App\Http\Controllers\SalidaMaterialesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +34,8 @@ Route::get('/incidentes/create/{tipo}', [IncidenteController::class, 'create'])-
 Route::get('/incidentes/show', [IncidenteController::class, 'show'])->middleware(['auth', 'verified'])->name('incidentes.show');
 //buscar tipo hardware - abre form de busqueda 
 Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create.hardware');
+//crear incidente de un equipo tipo hardware
+Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
 
 
 //**crear incidente de un equipo tipo hardware
@@ -83,15 +85,32 @@ Route::get('/materiales/stock/create/{idMaterial}', [MaterialesController::class
 Route::post('/materiales/stock/create/store/{idMaterial}', [MaterialesController::class, 'storeStock'])->middleware(['auth', 'verified'])->name('materiales.store.stock');
 Route::get('/materiales/stock/create/diminish/{idMaterial}', [MaterialesController::class, 'diminishView'])->middleware(['auth', 'verified'])->name('materiales.diminish.stock');
 Route::post('/materiales/stock/diminish/store/{idMaterial}', [MaterialesController::class, 'diminishStock'])->middleware(['auth', 'verified'])->name('materiales.diminish.stock.store');
+// ** Editar incidente ....con equipo  
+Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidentes');
+// ** editar incidente sin equipo
+// Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidente');
+// ** muestra un incidente
+Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
+//** descarga el historial en pdf */
+Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialPDF'])->middleware(['auth', 'verified'])->name('historial.incidente');
+//Crear equipo
+Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
+
+//Salidas o soluciones
+Route::get('salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
+Route::post('salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
+
 
 // Perfil
 Route::get('/perfil', [UserController::class, 'perfil'])->middleware(['auth', 'verified'])->name('perfil');
 Route::post('/perfil/change', [UserController::class, 'changeUser'])->middleware(['auth', 'verified'])->name('perfil.change');
 
+//************ Salidas Materiales */
+Route::get('/salida/materiales/{idSalida}/{opcional}', [SalidaMaterialesController::class, 'index'])->middleware(['auth', 'verified'])->name('salida.materiales.index');
+Route::post('/salidas/materiales', [SalidaMaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('salida.materiales.store');
+
+/********************* */
 //Usuarios
-Route::middleware(['auth', 'verified', 'admin'])->get('/users', ShowUsers::class)->name('users.index');
-//Route::get('/users', [ShowPosts::class],'render')->middleware(['auth', 'verified', 'admin'])->name('users.index');
-Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'verified', 'admin'])->name('users.create');
-Route::delete('/users/delete/{idUser}', [UserController::class, 'destroy'])->middleware(['auth', 'verified', 'admin'])->name('users.destroy');
+require __DIR__ . '/users.php';
 
 require __DIR__ . '/auth.php';

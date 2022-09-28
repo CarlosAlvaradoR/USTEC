@@ -8,6 +8,7 @@ use App\Models\Incidente;
 use App\Models\Materiales;
 use Illuminate\Http\Request;
 use App\Models\Material_Salida;
+use Illuminate\Support\Facades\DB;
 
 class SalidaController extends Controller
 {
@@ -15,8 +16,13 @@ class SalidaController extends Controller
     public $id;
     public function index(Incidente $incidente)
     {
+        //return $incidente;
+        //Primero hacemos un select
+        //Si hay datos en el select count un return sino otro return
+        $materiales = Materiales::all();
         return view('salidas.index', [
-            'incidente' => $incidente
+            'incidente' => $incidente,
+            'materiales' => $materiales
         ]);
     }
 
@@ -62,6 +68,8 @@ class SalidaController extends Controller
         //     ]);
         // }
 
+
+        /** Obtenemos el último id  */
 
         //actualizar estado de incidente
         Incidente::where('id', $request->incidente)->update(array('estado' => 1));

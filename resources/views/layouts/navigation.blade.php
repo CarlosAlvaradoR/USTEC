@@ -51,6 +51,7 @@
                         </x-dropdown>
                     </div> --}}
 
+
                     <x-nav-link :href=" route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
                         {{ __('Incidentes') }}
                         @if (auth()->user()->sinSolucionar() > 0)

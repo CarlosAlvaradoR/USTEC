@@ -31,7 +31,7 @@
                                 <div>
                                     <x-label for="stock" :value="__('Añadir Cantidad')" />
 
-                                    <x-input id="stock" class="block mt-1 w-full" type="text" name="stock"
+                                    <x-input id="stock" class="block mt-1 w-full" type="number" name="stock"
                                         placeholder="Ingrese la cantidad a añadir" :value="old('stock')" required
                                         autofocus />
                                 </div>
