@@ -43,14 +43,18 @@ class SalidaController extends Controller
         $salida = Salida::latest('id')->first();
         foreach ($array as $key => $item) {
             $datos = explode("-", $key);
-
+            //cantidad-5  = 6
+            //
             if ($datos[0] === 'cantidad') {
 
                 $this->cantidad = $item;
                 $this->id = $datos[1];
 
                 //**Descontar stock */
+                //!TODO Validar o verificar que exista el id del material */
                 $materiales = Materiales::find($this->id);
+
+                //!TODO Si existe el material, validar que el stock sea mayor que la cantidad a descontar
                 $materiales->stock = $materiales->stock - $this->cantidad;
                 $materiales->save();
                 Uso::create([
@@ -62,7 +66,7 @@ class SalidaController extends Controller
             }
         };
         // foreach ($array as $key => $item) {
-        $datos = explode("-", $key);
+        // $datos = explode("-", $key);
         //     Material_Salida::create([
         //         'cantidad' =>   $datos[1]
         //     ]);
