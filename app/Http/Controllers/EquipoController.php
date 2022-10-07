@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipo;
+use App\Models\Area;
 
 class EquipoController extends Controller
 {
@@ -63,7 +64,8 @@ class EquipoController extends Controller
     {
         //
         $equipo=Equipo::findOrFail($id);
-        return view('equipos.edit', compact('equipo'));
+        $areas=Area::all();
+        return view('equipos.edit', compact('equipo','areas'));
     }
 
     /**
@@ -77,11 +79,13 @@ class EquipoController extends Controller
     {
         //
         $equipo= Equipo::findOrFail($id);
+        //return $equipo;
         $this->validate($request,[
-            'codigo'=>'required|min:1|unique:equipos,codigo,'.$equipo->codigo,
+            'codigo'=>'required|min:1|unique:equipos,codigo,'.$equipo->id,
             'nombre_equipo'=>'required|min:3',
             'marca'=>'required|min:2',
-            'descripcion'=>'required'
+            'descripcion'=>'required',
+            //'area' => 'required',
         ]);
         
         //$equipo= Equipo::find($id);
