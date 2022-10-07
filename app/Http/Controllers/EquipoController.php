@@ -76,14 +76,15 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $equipo= Equipo::findOrFail($id);
         $this->validate($request,[
-            'codigo'=>'required|min:1',
+            'codigo'=>'required|min:1|unique:equipos,codigo,'.$equipo->codigo,
             'nombre_equipo'=>'required|min:3',
             'marca'=>'required|min:2',
             'descripcion'=>'required'
         ]);
         
-        $equipo= Equipo::find($id);
+        //$equipo= Equipo::find($id);
         $equipo->codigo=$request->codigo;
         $equipo->nombre_equipo=$request->nombre_equipo;
         $equipo->marca=$request->marca;

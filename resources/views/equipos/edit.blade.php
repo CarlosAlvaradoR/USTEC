@@ -30,37 +30,47 @@
 
                                     <x-input name="codigo" class="block mt-1 w-full" type="text"
                                         placeholder="Ingrese código patrimonial"
-                                        value="{{old('codigo', $equipo->codigo)}}" required autofocus />
+                                        value="{{ old('codigo', $equipo->codigo) }}" required autofocus />
 
 
 
                                 </div>
+                                @error('codigo')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <div>
                                     <x-label for="nombre_equipo" :value="__('Nombre Equipo')" />
 
                                     <x-input name="nombre_equipo" class="block mt-1 w-full" type="text"
                                         placeholder="Nombre del Equipo"
-                                        value="{{old('nombre_equipo', $equipo->nombre_equipo)}}" required autofocus />
+                                        value="{{ old('nombre_equipo', $equipo->nombre_equipo) }}" required autofocus />
                                 </div>
+                                @error('nombre_equipo')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <div>
                                     <x-label for="marca" :value="__('Marca')" />
 
                                     <x-input name="marca" class="block mt-1 w-full" type="text"
-                                        placeholder="Marca del Equipo" value="{{old('marca', $equipo->marca)}}" required
-                                        autofocus />
+                                        placeholder="Marca del Equipo" value="{{ old('marca', $equipo->marca) }}"
+                                        required autofocus />
 
                                 </div>
-
+                                @error('marca')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <div>
                                     <x-label for="descripcion" :value="__('Descripción')" />
 
-                                    <textarea name="descripcion" cols="30" rows="10"
-                                        placeholder="Descripcion del equipo" class="rounded-md shadow-sm border-gray-300
+                                    <textarea name="descripcion" cols="30" rows="10" placeholder="Descripcion del equipo"
+                                        class="rounded-md shadow-sm border-gray-300
                                    focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
-                                   {{old('marca', $equipo->descripcion)}}
+                                   {{ old('marca', $equipo->descripcion) }}
                                    </textarea>
                                 </div>
-
+                                @error('descripcion')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <x-button class="w-full h-10 justify-center ">
                                     {{ __('Actualizar') }}
                                 </x-button>

@@ -96,13 +96,17 @@ class MaterialesController extends Controller
 
     public function diminishStock(Request $request, $id){
         $this->validate($request,[
-            'stock'=>'required|integer|min:0'
+            'stock'=>'required|integer|min:1'
         ]);
         
         $materiales= Materiales::find($id);
         $nameMaterial = $materiales->nombre;
         $materiales->stock=$materiales->stock-$request->stock;
 
+        if ($materiales->stock < 0) {
+            $notification2 = "Está tratando de ingresar una cantidad mayor a su stock";
+            return redirect()->route('index.materiales')->with(compact('notification2'));
+        }
         $materiales->save();
         $notification="Se quitó $request->stock unidades correctamente al Material $nameMaterial";
         return redirect()->route('index.materiales')->with(compact('notification'));
@@ -110,7 +114,7 @@ class MaterialesController extends Controller
 
     public function storeStock(Request $request, $id){
         $this->validate($request,[
-            'stock'=>'required|integer|min:0'
+            'stock'=>'required|integer|min:1'
         ]);
         
         $materiales= Materiales::find($id);

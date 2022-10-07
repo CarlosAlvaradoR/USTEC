@@ -39,7 +39,7 @@
                                 </button>
                             </div>
                             @endif
-                            <form class="space-y-3 py-2" action="{{ route('materiales.store') }}" method="POST">
+                            <form class="space-y-3 py-2" action="#" method="POST">
                                 @csrf
                                 <div>
                                     <x-label for="password_actual" :value="__('Nombre de Usuario')" />
@@ -86,11 +86,11 @@
 
                                 </div>
                                 @endif
-                                <div class="flex justify-center">
+                                <!--<div class="flex justify-center">
                                     <x-button type="submit" class="h-10 justify-center ">
-                                        {{ __('Guardar') }}
+                                        {{-- __('Actualizar') --}}
                                     </x-button>
-                                </div>
+                                </div>-->
 
                             </form>
                         </div>
