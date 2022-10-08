@@ -78,6 +78,7 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //return $request;
         $equipo= Equipo::findOrFail($id);
         //return $equipo;
         $this->validate($request,[
@@ -93,6 +94,7 @@ class EquipoController extends Controller
         $equipo->nombre_equipo=$request->nombre_equipo;
         $equipo->marca=$request->marca;
         $equipo->descripcion=$request->descripcion;
+        $equipo->area_id=$request->area;
 
         $equipo->save();
         $notification='Equipo Actualizado correctamente';
