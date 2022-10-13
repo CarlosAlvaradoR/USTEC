@@ -128,8 +128,9 @@ Livewire.on('mostrarSeleccion', (nombre, id,stock) => {
         nombre: nombre,
         stock: stock
         };
-
-    seleccion.push(material);
+    seleccion =[...seleccion.filter(selec => selec.nombre !== material.nombre)] ;
+    seleccion.push(material); 
+    
     mostrarSeleccion()
 })
 
@@ -137,6 +138,7 @@ Livewire.on('mostrarSeleccion', (nombre, id,stock) => {
 function mostrarSeleccion() {
     limpiar();
     const content = document.querySelector("#materiales");
+  
     seleccion.forEach(sel => {
         const contenedorSel = document.createElement("DIV");
      /* Bonotes **/
@@ -191,14 +193,14 @@ function mostrarSeleccion() {
         content.appendChild(contenedorSel)
         
     });
+
+    
 }
 
 function confirmarQuitar(sel) {
    
         seleccion = seleccion.filter(selec => selec.nombre != sel.nombre);
         mostrarSeleccion();
-   
-  
   }
 
 function limpiar() {
