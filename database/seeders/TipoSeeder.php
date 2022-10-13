@@ -16,17 +16,17 @@ class TipoSeeder extends Seeder
     public function run()
     {
         DB::table('tipos')->insert([
-            'tipo' => 'Hardware',
+            'tipo' => 'hardware',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('tipos')->insert([
-            'tipo' => 'Software',
+            'tipo' => 'software',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('tipos')->insert([
-            'tipo' => 'Otro',
+            'tipo' => 'otro',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
