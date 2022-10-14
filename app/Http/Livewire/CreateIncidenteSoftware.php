@@ -44,10 +44,10 @@ class CreateIncidenteSoftware extends Component
 
 
         //Crear un Mensaje
-        session()->flash('mensaje-incidente', 'El incidente software se guardo correctamente');
+        session()->flash('mensaje', 'El incidente  se guardo correctamente');
 
         //redireccionar al usuario
-        return redirect()->route('incidentes.create', 'software');
+        return redirect()->route('incidentes.show');
     }
 
 
