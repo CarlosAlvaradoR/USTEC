@@ -29,7 +29,7 @@ class SalidaController extends Controller
 
     public function store(Request $request)
     { // !TODO validar
-        //dd($request->incidente);
+        //  dd($request);
         //almacenar Salida o solucion
         $array = $request->all();
         // dd($array);
