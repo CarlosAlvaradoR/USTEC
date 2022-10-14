@@ -104,7 +104,7 @@
                             <span class="sr-only">Info</span>
                             <div>
                                 <span class="font-medium">Atencion!</span> Este incidente aún no fue solucionado, <a
-                                    class="font-bold  underline" href="{{route('salida.index',$incidente )}}">Solucionar
+                                    class="font-bold  underline" href="{{route('show.incidente',$incidente )}}">Solucionar
                                     Ahora</a>
                             </div>
                         </div>
