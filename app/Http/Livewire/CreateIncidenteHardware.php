@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\NotiEmail;
 use App\Models\Area;
 use App\Models\Equipo;
-use App\Models\Gravedad;
-use App\Models\Importancia;
-use App\Models\Incidente;
 use Livewire\Component;
+use App\Models\Gravedad;
+use App\Models\Incidente;
+use App\Models\Importancia;
+use Illuminate\Support\Facades\Mail;
 
 class CreateIncidenteHardware extends Component
 {
@@ -48,17 +50,25 @@ class CreateIncidenteHardware extends Component
         $datos = $this->validate();
         //s  dd($this->equipo->id . ' ' . $this->tipo);
         Incidente::create([
-
             'descripcion' => $datos['descripcion'],
             'titulo' => $datos['titulo'],
-            // ** se coloca el area donde esta el equipo
-
             'area_id' => $this->equipo->area_id,
             'importancia_id' => $datos['gravedad'],
             'tipo_id' =>  $this->tipo,
             'equipo_id' => $this->equipo->id,
             'user_id' => auth()->user()->id
         ]);
+
+        //**Enviar notificacion al mail */
+        $mailData = [
+            "titulo" => $datos['titulo'],
+            'descripcion' => $datos['descripcion'],
+            'equipo' => $this->equipo->nombre_equipo,
+            'importancia' => $datos['gravedad'],
+            'area' => $this->equipo->area->area,
+        ];
+
+        Mail::to(auth()->user()->email)->send(new NotiEmail($mailData));
 
 
         //Crear un Mensaje
