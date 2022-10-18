@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GravedadSeeder::class);
         $this->call(TipoSeeder::class);
         $this->call(UsuariosSeeder::class);
+        $this->call(EquiposIncidentesSeeder::class);
+        $this->call(MaterialesSeeder::class);
     }
 }

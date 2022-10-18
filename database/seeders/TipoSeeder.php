@@ -26,7 +26,7 @@ class TipoSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
         DB::table('tipos')->insert([
-            'tipo' => 'Otro',
+            'tipo' => 'otro',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);

@@ -30,37 +30,67 @@
 
                                     <x-input name="codigo" class="block mt-1 w-full" type="text"
                                         placeholder="Ingrese código patrimonial"
-                                        value="{{old('codigo', $equipo->codigo)}}" required autofocus />
+                                        value="{{ old('codigo', $equipo->codigo) }}" required autofocus />
 
 
 
                                 </div>
+                                @error('codigo')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <div>
                                     <x-label for="nombre_equipo" :value="__('Nombre Equipo')" />
 
                                     <x-input name="nombre_equipo" class="block mt-1 w-full" type="text"
                                         placeholder="Nombre del Equipo"
-                                        value="{{old('nombre_equipo', $equipo->nombre_equipo)}}" required autofocus />
+                                        value="{{ old('nombre_equipo', $equipo->nombre_equipo) }}" required autofocus />
                                 </div>
+                                @error('nombre_equipo')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <div>
                                     <x-label for="marca" :value="__('Marca')" />
 
                                     <x-input name="marca" class="block mt-1 w-full" type="text"
-                                        placeholder="Marca del Equipo" value="{{old('marca', $equipo->marca)}}" required
-                                        autofocus />
+                                        placeholder="Marca del Equipo" value="{{ old('marca', $equipo->marca) }}"
+                                        required autofocus />
 
                                 </div>
-
+                                @error('marca')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
                                 <div>
                                     <x-label for="descripcion" :value="__('Descripción')" />
 
-                                    <textarea name="descripcion" cols="30" rows="10"
-                                        placeholder="Descripcion del equipo" class="rounded-md shadow-sm border-gray-300
+                                    <textarea name="descripcion" cols="30" rows="10" placeholder="Descripcion del equipo"
+                                        class="rounded-md shadow-sm border-gray-300
                                    focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
-                                   {{old('marca', $equipo->descripcion)}}
+                                   {{ old('marca', $equipo->descripcion) }}
                                    </textarea>
                                 </div>
+                                @error('descripcion')
+                                    <livewire:mostrar-alerta :message='$message' />
+                                @enderror
+                                <div>
 
+                                    <x-label for="area" value="Area" />
+                                    <select id="area" name="area"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected>Seleccione...</option>
+                                        @foreach ($areas as $area)
+                                            <option 
+                                                @if ($area->id == $equipo->area_id)
+                                                    selected
+                                                @endif 
+                                            value="{{ $area->id }}">{{ $area->area }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('area')
+                                        <livewire:mostrar-alerta :message='$message' />
+                                    @enderror
+                                </div>
+                                <br>
                                 <x-button class="w-full h-10 justify-center ">
                                     {{ __('Actualizar') }}
                                 </x-button>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipo;
+use App\Models\Area;
 
 class EquipoController extends Controller
 {
@@ -63,7 +64,8 @@ class EquipoController extends Controller
     {
         //
         $equipo=Equipo::findOrFail($id);
-        return view('equipos.edit', compact('equipo'));
+        $areas=Area::all();
+        return view('equipos.edit', compact('equipo','areas'));
     }
 
     /**
@@ -76,18 +78,23 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //return $request;
+        $equipo= Equipo::findOrFail($id);
+        //return $equipo;
         $this->validate($request,[
-            'codigo'=>'required|min:1',
+            'codigo'=>'required|min:1|unique:equipos,codigo,'.$equipo->id,
             'nombre_equipo'=>'required|min:3',
             'marca'=>'required|min:2',
-            'descripcion'=>'required'
+            'descripcion'=>'required',
+            //'area' => 'required',
         ]);
         
-        $equipo= Equipo::find($id);
+        //$equipo= Equipo::find($id);
         $equipo->codigo=$request->codigo;
         $equipo->nombre_equipo=$request->nombre_equipo;
         $equipo->marca=$request->marca;
         $equipo->descripcion=$request->descripcion;
+        $equipo->area_id=$request->area;
 
         $equipo->save();
         $notification='Equipo Actualizado correctamente';
