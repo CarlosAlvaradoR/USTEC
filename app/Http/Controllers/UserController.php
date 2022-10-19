@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Roles;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,8 @@ class UserController extends Controller
     }
 
     public function create(){
-        return view('users.create');
+        $roles = Roles::all();
+        return view('users.create', compact('roles'));
     }
 
     public function perfil(){
@@ -31,7 +33,7 @@ class UserController extends Controller
 
         //return $request;
         $this->validate($request,[
-            'password_actual'=>'required|min:1',
+            'password_actual'=>'required|min:8',
             'password'=>'required|confirmed'
         ]);
 
@@ -65,7 +67,7 @@ class UserController extends Controller
 
     public function edit($id){
         $user=User::findOrFail($id);
-        if ($user->role == 'admin') {
+        if ($user->rol_id == 1) {
             return redirect()->route('users.index');
         }
         return view('users.edit', compact('user'));

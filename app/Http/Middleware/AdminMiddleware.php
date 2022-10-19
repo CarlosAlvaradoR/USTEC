@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role == 'admin') //Si el usuario es Admin
+        if(auth()->user()->rol_id == 1) //Si el usuario es Admin
             return $next($request); //El next le permitirá continuar
 
         return redirect()->route('dashboard');
