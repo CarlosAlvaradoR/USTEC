@@ -51,7 +51,7 @@
                         </x-dropdown>
                     </div> --}}
 
-                        @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 2)
+                       {{-- @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 2)--}}
                             <x-nav-link :href="route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
                                 {{ __('Incidentes') }}
                                 @if (auth()->user()->sinSolucionar() > 0)
@@ -64,12 +64,12 @@
                             <x-nav-link :href="route('index.materiales')" :active="request()->routeIs('index.materiales')">
                                 {{ __('Materiales') }}
                             </x-nav-link>
-                        @endif
-                        @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 2 || Auth::user()->rol_id == 3)
+                       {{-- @endif--}}
+                        {{--@if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 2 || Auth::user()->rol_id == 3)--}}
                             <x-nav-link :href="route('index.equipos')" :active="request()->routeIs('index.equipos')">
                                 {{ __('Equipos') }}
                             </x-nav-link>
-                        @endif
+                        {{--@endif--}}
 
 
 

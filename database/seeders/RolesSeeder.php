@@ -22,10 +22,10 @@ class RolesSeeder extends Seeder
         $rol = Roles::create([
             'nombre' => 'Trabajador'
         ]);
-        $rol = Roles::create([
+        $rol = Roles::create([ // ID 3
             'nombre' => 'Notificador' //Va a tener el privilegio de crear equipos
         ]);
-        $rol = Roles::create([
+        $rol = Roles::create([ // ID 4
             'nombre' => 'Externos' // No va a tener el privilegio de crear equipos
         ]);
     }
