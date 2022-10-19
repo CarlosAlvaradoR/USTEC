@@ -70,19 +70,22 @@ class UserController extends Controller
         if ($user->rol_id == 1) {
             return redirect()->route('users.index');
         }
-        return view('users.edit', compact('user'));
+        $roles = Roles::where('id','!=',1)->get();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, $id){
         //return $request;
         $this->validate($request,[
             'name'=>'required|min:3',
-            'email'=>'required|string|email|unique:users,email,'.$id
+            'email'=>'required|string|email|unique:users,email,'.$id,
+            'rol' => 'required|integer|min:2'
         ]);
         
         $user= User::find($id);
         $user->name=$request->name;
         $user->email=$request->email;
+        $user->rol_id = $request->rol;
 
         $user->save();
         $notification='Información de usuario actualizada correctamente';

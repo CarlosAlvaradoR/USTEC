@@ -31,14 +31,19 @@ Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'e
 // ** editar incidente sin equipo
 // Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidente');
 // ** muestra un incidente
-Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
+Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified', 'adminemployees'])->name('show.incidente');
 //** descarga el historial en pdf */
 Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialPDF'])->middleware(['auth', 'verified'])->name('historial.incidente');
 
 
 //Salidas o soluciones
-Route::get('/salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
-Route::post('/salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
+Route::get('salida/{incidente}', [SalidaController::class, 'index'])->middleware(['auth', 'verified','adminemployees'])->name('salida.index');
+Route::post('salida/{incidente}', [SalidaController::class, 'store'])->middleware(['auth', 'verified','adminemployees'])->name('salida.store');
+
+
+//Salidas o soluciones
+//Route::get('/salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
+//Route::post('/salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
 
 //** API 's */
 Route::get('/api/incidentes', [APIIncidentes::class, 'index'])->name('api.incidentes');
@@ -50,11 +55,8 @@ Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'e
 // ** editar incidente sin equipo
 // Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidente');
 // ** muestra un incidente
-Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
+//Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
 //** descarga el historial en pdf */
 Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialPDF'])->middleware(['auth', 'verified'])->name('historial.incidente');
 //Crear equipo
 
-//Salidas o soluciones
-Route::get('salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
-Route::post('salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');

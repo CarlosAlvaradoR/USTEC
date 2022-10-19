@@ -75,14 +75,11 @@
                                         <th scope="col" class="py-3 px-6">
                                             Nombre
                                         </th>
-                                        <!--<th scope="col" class="py-3 px-6">
-                                        Marca
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Unidad Medida
-                                    </th>-->
                                         <th scope="col" class="py-3 px-6">
                                             Email
+                                        </th>
+                                        <th scope="col" class="py-3 px-6">
+                                            Rol
                                         </th>
                                         <th scope="col" class="py-3 px-6">
                                             Estado
@@ -105,6 +102,9 @@
                                             </td>
                                             <td class="py-4 px-6">
                                                 {{ $user->email }}
+                                            </td>
+                                            <td class="py-4 px-6">
+                                                {{$user->nombre}}
                                             </td>
                                             <td>
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="post"
