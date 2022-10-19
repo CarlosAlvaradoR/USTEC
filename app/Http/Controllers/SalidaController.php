@@ -33,7 +33,11 @@ class SalidaController extends Controller
         //almacenar Salida o solucion
         $array = $request->all();
         // dd($array);
+        if (!isset($request->descripcion)) {
+            session()->flash('mensaje-error', 'El campo descripcion es obligatorio');
 
+            return redirect()->route('show.incidente', $request->incidente);
+        }
 
         //  dd($array);
         Salida::create([

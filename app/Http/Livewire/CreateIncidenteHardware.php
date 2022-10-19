@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Models\Gravedad;
 use App\Models\Incidente;
 use App\Models\Importancia;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class CreateIncidenteHardware extends Component
@@ -67,9 +68,11 @@ class CreateIncidenteHardware extends Component
             'importancia' => $datos['gravedad'],
             'area' => $this->equipo->area->area,
         ];
-
+        // $users = User::all();
+        // foreach($users as $user){
+        //     Mail::to($user->mail)->send(new NotiEmail($mailData));
+        // }
         Mail::to(auth()->user()->email)->send(new NotiEmail($mailData));
-
 
         //Crear un Mensaje
         session()->flash('mensaje', 'El incidente se guardo correctamente');
