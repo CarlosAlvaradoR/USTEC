@@ -21,9 +21,43 @@ class UserController extends Controller
     }
 
     public function create(){
-        $roles = Roles::all();
+        $roles = Roles::where('id','!=',1)->get();
         return view('users.create', compact('roles'));
     }
+
+
+    public function guardarUsuario(Request $request) {
+        //return $request;
+        $rules= [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:255',
+            'password'=>'required|confirmed|min:8',
+            'rol' => 'required|numeric|min:2|max:4'
+        ];
+
+        $messages=[
+            'name.required' => 'El nombre del usuario es obligatorio.',
+            'name.string' => 'El nombre del usuario deben de ser caracteres válidos.',
+            'name.max' => 'El nombre debe de tener a lo mucho 255 caracteres.',
+            'rol.required' => 'Es necesario seleccionar una opción del rol',
+            'rol.string' => 'Necesita seleccionar una opción válida',
+            'rol.min:2' => 'Por favor seleccione una opción válida'
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'rol_id' => $request->rol
+        ]);
+
+        $notification='Usuario registrado correctamente';
+        return redirect()->route('users.create')->with(compact('notification'));
+    }
+
 
     public function perfil(){
         return view('auth.perfil');
@@ -34,7 +68,7 @@ class UserController extends Controller
         //return $request;
         $this->validate($request,[
             'password_actual'=>'required|min:8',
-            'password'=>'required|confirmed'
+            'password'=>'required|confirmed|min:8'
         ]);
 
         $user = Auth::user(); //Instancia
@@ -59,9 +93,16 @@ class UserController extends Controller
                     return redirect()->route('perfil')->with(compact('notificationPassword'));
                         
                 }else{
-                    return "Las contraseñas no coinciden";
+                    $notificationError="Las contraseña nueva y la confirmación no coinciden";
+                    return redirect()->route('perfil')->with(compact('notificationError'));
                 }
+            }else {
+                $notificationError="Su clave actual no coincide con nuestros registros";
+                return redirect()->route('perfil')->with(compact('notificationError'));
             }
+        }else{
+            $notificationError="El Password actual no puede ser vacío";
+            return redirect()->route('perfil')->with(compact('notificationError'));
         }
     }
 
@@ -79,7 +120,7 @@ class UserController extends Controller
         $this->validate($request,[
             'name'=>'required|min:3',
             'email'=>'required|string|email|unique:users,email,'.$id,
-            'rol' => 'required|integer|min:2'
+            'rol' => 'required|numeric|min:2|max:4'
         ]);
         
         $user= User::find($id);

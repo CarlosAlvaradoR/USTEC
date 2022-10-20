@@ -19,6 +19,7 @@ class ShowUsers extends Component
                 ->where('users.name','like','%'.$this->search.'%')
                 ->orWhere('users.email', 'like', '%'.$this->search.'%')
                 ->orWhere('roles.nombre', 'like', '%'.$this->search.'%')
+                ->orderBy('users.id', 'ASC')
                 ->paginate(5);
                 
         return view('livewire.show-users', compact('users'))

@@ -32,7 +32,18 @@
         @endif
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <!--<x-auth-validation-errors class="mb-4" errors="$errors" />-->
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <p>Corrige los siguientes errores:</p>
+                <ul>
+                    @foreach ($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
