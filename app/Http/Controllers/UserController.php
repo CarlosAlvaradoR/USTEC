@@ -136,6 +136,11 @@ class UserController extends Controller
     public function destroy($id){
         $user = User::findOrFail($id);
         
+        if ($user->rol_id == 1) {
+            $notification_error = "El usuario es de tipo de Administrador y no se le puede inhabilitar";
+            return redirect()->route("users.index")->with(compact('notification_error'));
+        }
+
         if ($user->status == 1) { //El usuario está activo
             $user->status= 0;
             $mensaje ="El usuario $user->name se deshabilitó correctamente";
