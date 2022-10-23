@@ -67,12 +67,13 @@ class CreateIncidenteHardware extends Component
             'equipo' => $this->equipo->nombre_equipo,
             'importancia' => $datos['gravedad'],
             'area' => $this->equipo->area->area,
+            'user' => auth()->user()->email
         ];
-        // $users = User::all();
-        // foreach($users as $user){
-        //     Mail::to($user->mail)->send(new NotiEmail($mailData));
-        // }
-        Mail::to(auth()->user()->email)->send(new NotiEmail($mailData));
+        $users = User::where('rol_id', 1)->orWhere('rol_id', 2)->get();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new NotiEmail($mailData));
+        }
+        //  Mail::to(auth()->user()->email)->send(new NotiEmail($mailData));
 
         //Crear un Mensaje
         session()->flash('mensaje', 'El incidente se guardo correctamente');

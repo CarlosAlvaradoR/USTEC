@@ -16,6 +16,8 @@
     <p class=" text-gray-500">Descripcion: {{ $mailData['descripcion'] }}</p>
     <a href="{{route('incidentes.show')}}" class="font-medium text-black-600 dark:text-black-900 hover:underline">Ver
         Incidentes</a>
+    <p class="text-gray-400">Este incidente fue reportado por: <span class="text-gray-800">{{$mailData['user']}}</span>
+    </p>
     {{-- <p class=" text-gray-500">Gravedad: {{ $mailData['descripcion'] }}</p> --}}
 </body>
 

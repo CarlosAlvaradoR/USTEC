@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Models\Area;
+use App\Models\User;
+use App\Mail\NotiEmail;
 use Livewire\Component;
 use App\Models\Incidente;
 use App\Models\Importancia;
+use Illuminate\Support\Facades\Mail;
 
 class CreateIncidenteSoftware extends Component
 {
@@ -41,7 +44,20 @@ class CreateIncidenteSoftware extends Component
             // 'equipo_id' => $this->equipo->id,
             'user_id' => auth()->user()->id
         ]);
-
+        //**Enviar notificacion al mail */
+        $area = Area::find($datos['area']);
+        $mailData = [
+            "titulo" => $datos['titulo'],
+            'descripcion' => $datos['descripcion'],
+            'equipo' => 'Sin equipo',
+            'importancia' => $datos['gravedad'],
+            'area' => $area->area,
+            'user' => auth()->user()->email
+        ];
+        $users = User::where('rol_id', 1)->orWhere('rol_id', 2)->get();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new NotiEmail($mailData));
+        }
 
         //Crear un Mensaje
         session()->flash('mensaje', 'El incidente  se guardo correctamente');
