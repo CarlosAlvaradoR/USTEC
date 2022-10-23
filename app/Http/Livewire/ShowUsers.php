@@ -14,11 +14,14 @@ class ShowUsers extends Component
 
     public function render()
     {
-        /*$posts = Post::where('title', 'like', '%'.$this->search.'%')
-                ->orWhere('content', 'like', '%'.$this->search.'%')
-                ->orderBy($this->sort, $this->direction)
-                ->get();*/
-        $users = User::where('name','like','%'.$this->search.'%')->paginate(5);
+        $users = User::select('users.id', 'users.name','users.email', 'roles.nombre','users.status')
+                ->join('roles', 'users.rol_id', '=', 'roles.id')
+                ->where('users.name','like','%'.$this->search.'%')
+                ->orWhere('users.email', 'like', '%'.$this->search.'%')
+                ->orWhere('roles.nombre', 'like', '%'.$this->search.'%')
+                ->orderBy('users.id', 'ASC')
+                ->paginate(5);
+                
         return view('livewire.show-users', compact('users'))
         ->layout('layouts.app', ['header' => 'Lista de Usuarios']);
     }

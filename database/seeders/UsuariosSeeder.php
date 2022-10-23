@@ -22,7 +22,7 @@ class UsuariosSeeder extends Seeder
             'email_verified_at'=> date('Y-m-d H:m:s'), 
             'password'=> bcrypt('123456789'), 
             'status'=> 1, //Activo 
-            'role'=> 'admin',
+            'rol_id'=> 1,
         ]);
     }
 }

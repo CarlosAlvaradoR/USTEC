@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminMiddleware
+class UsuariosExternosRestriccionesMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->rol_id == 1) //Si el usuario es Admin
-            return $next($request); //El next le permitirá continuar
+        if(auth()->user()->rol_id == 4) //Si el usuario es Externo lo redirige al dashboard
+            return redirect()->route('dashboard');
 
-        return redirect()->route('dashboard');
+        return $next($request); //El next le permitirá continuar
     }
 }

@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(RolesSeeder::class); //Para crear los roles de los usuarios
+        //$this->call(AccionesSeeder::class); //Para crear o no equipos
         $this->call(AreaSeeder::class);
         $this->call(GravedadSeeder::class);
         $this->call(TipoSeeder::class);

@@ -1,17 +1,11 @@
 <?php
-
-use App\Http\Controllers\APIIncidentes;
-use App\Http\Controllers\EquipoController;
-use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\IncidenteController;
+
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SalidaController;
+
 use App\Models\Incidente;
-use App\Http\Controllers\MaterialesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\ShowMateriales;
-use App\Http\Livewire\ShowEquipos;
+
 use App\Http\Controllers\SalidaMaterialesController;
 /*
 |--------------------------------------------------------------------------
@@ -26,79 +20,8 @@ use App\Http\Controllers\SalidaMaterialesController;
 
 Route::get('/',  [HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', [IncidenteController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-//** Incidentes
-Route::get('/incidentes/create/{tipo}', [IncidenteController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create');
-//listar incidentes
-Route::get('/incidentes/show', [IncidenteController::class, 'show'])->middleware(['auth', 'verified'])->name('incidentes.show');
-//buscar tipo hardware - abre form de busqueda 
-Route::get('/incidentes/create/hardware/{equipo}', [HardwareController::class, 'create'])->middleware(['auth', 'verified'])->name('incidentes.create.hardware');
-//crear incidente de un equipo tipo hardware
-Route::get('/{equipo:codigo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
-
-
-//**crear incidente de un equipo tipo hardware
-Route::get('/{equipo}/create/hardware/incidente', [HardwareController::class, 'createIncidente'])->middleware(['auth', 'verified'])->name('equipo.create.incidentes');
-// ** Editar incidente ....con equipo  
-Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidentes');
-// ** editar incidente sin equipo
-// Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidente');
-// ** muestra un incidente
-Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
-//** descarga el historial en pdf */
-Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialPDF'])->middleware(['auth', 'verified'])->name('historial.incidente');
-//**Crear equipo
-Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
-
-//Salidas o soluciones
-Route::get('/salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
-Route::post('/salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
-
-//** API 's */
-Route::get('/api/incidentes', [APIIncidentes::class, 'index'])->name('api.incidentes');
-
-//Mostrar Equipos
-Route::middleware(['auth', 'verified'])->get('/equipos', ShowEquipos::class)->name('index.equipos');
-//Route::get('/equipos', [EquipoController::class, 'index'])->middleware(['auth', 'verified'])->name('index.equipos');
-
-//Crear equipo
-Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
-
-//Editar Equipos
-Route::get('/equipos/{idEquipo}/edit', [EquipoController::class, 'edit'])->middleware(['auth', 'verified'])->name('equipos.edit');
-Route::put('/equipos/{idEquipo}/update', [EquipoController::class, 'update'])->middleware(['auth', 'verified'])->name('equipos.update');
-
-//Eliminar Equipos
-Route::delete('/equipos/delete/{idEquipo}', [EquipoController::class, 'destroy'])->middleware(['auth', 'verified'])->name('equipos.destroy');
-
-
-/**Crear Materiales */
-Route::middleware(['auth', 'verified'])->get('/materiales', ShowMateriales::class)->name('index.materiales');
-//Route::get('/materiales', [ShowMateriales::class])->middleware(['auth', 'verified'])->name('index.materiales');
-Route::get('/materiales/create', [MaterialesController::class, 'create'])->middleware(['auth', 'verified'])->name('materiales.create');
-Route::post('/materiales/store', [MaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('materiales.store');
-Route::get('/materiales/{idMaterial}/edit', [MaterialesController::class, 'edit'])->middleware(['auth', 'verified'])->name('materiales.edit');
-Route::put('/materiales/{idMaterial}/update', [MaterialesController::class, 'update'])->middleware(['auth', 'verified'])->name('materiales.update');
-Route::delete('/materiales/delete/{idMaterial}', [MaterialesController::class, 'destroy'])->middleware(['auth', 'verified'])->name('materiales.destroy');
-Route::get('/materiales/stock/create/{idMaterial}', [MaterialesController::class, 'createStock'])->middleware(['auth', 'verified'])->name('materiales.create.stock');
-Route::post('/materiales/stock/create/store/{idMaterial}', [MaterialesController::class, 'storeStock'])->middleware(['auth', 'verified'])->name('materiales.store.stock');
-Route::get('/materiales/stock/create/diminish/{idMaterial}', [MaterialesController::class, 'diminishView'])->middleware(['auth', 'verified'])->name('materiales.diminish.stock');
-Route::post('/materiales/stock/diminish/store/{idMaterial}', [MaterialesController::class, 'diminishStock'])->middleware(['auth', 'verified'])->name('materiales.diminish.stock.store');
-// ** Editar incidente ....con equipo  
-Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidentes');
-// ** editar incidente sin equipo
-// Route::get('/{incidente}/edit/{tipo}/incidente', [IncidenteController::class, 'editIncidente'])->middleware(['auth', 'verified'])->name('edit.incidente');
-// ** muestra un incidente
-Route::get('/{incidente}/show/incidente', [IncidenteController::class, 'incidente'])->middleware(['auth', 'verified'])->name('show.incidente');
-//** descarga el historial en pdf */
-Route::get('/{equipo}/historial', [IncidenteController::class, 'createHistorialPDF'])->middleware(['auth', 'verified'])->name('historial.incidente');
-//Crear equipo
-Route::get('/create/equipo', [EquipoController::class, 'create'])->middleware(['auth', 'verified'])->name('create.equipo');
-
-//Salidas o soluciones
-Route::get('salida/{incidente}', [SalidaController::class, 'index'])->name('salida.index');
-Route::post('salida/{incidente}', [SalidaController::class, 'store'])->name('salida.store');
+//Incidentes
+require __DIR__ . '/all_routes/incidentes.php';
 
 
 // Perfil
@@ -110,7 +33,13 @@ Route::get('/salida/materiales/{idSalida}/{opcional}', [SalidaMaterialesControll
 Route::post('/salidas/materiales', [SalidaMaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('salida.materiales.store');
 
 /********************* */
+//Materiales
+require __DIR__ . '/all_routes/materiales.php';
+
+//Equipos
+require __DIR__ . '/all_routes/equipos.php';
+
 //Usuarios
-require __DIR__ . '/users.php';
+require __DIR__ . '/all_routes/users.php';
 
 require __DIR__ . '/auth.php';

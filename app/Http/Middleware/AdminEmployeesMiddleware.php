@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminMiddleware
+class AdminEmployeesMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->rol_id == 1) //Si el usuario es Admin
+        if(auth()->user()->rol_id == 1 || auth()->user()->rol_id == 2) //Si el usuario es Admin o trabajador
             return $next($request); //El next le permitirá continuar
 
         return redirect()->route('dashboard');
