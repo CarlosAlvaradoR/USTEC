@@ -17,7 +17,8 @@ class UsuariosExternosRestriccionesMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(auth()->user()->rol_id == 4) //Si el usuario es Externo lo redirige al dashboard
-            return redirect()->route('dashboard');
+            //return redirect()->route('dashboard');
+            return redirect()->route('prohibido');
 
         return $next($request); //El next le permitirá continuar
     }

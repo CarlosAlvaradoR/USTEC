@@ -19,6 +19,7 @@ class AdminMiddleware
         if(auth()->user()->rol_id == 1) //Si el usuario es Admin
             return $next($request); //El next le permitirá continuar
 
-        return redirect()->route('dashboard');
+        //return redirect()->route('dashboard');
+        return redirect()->route('prohibido');
     }
 }

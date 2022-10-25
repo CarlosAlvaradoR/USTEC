@@ -109,7 +109,8 @@ class UserController extends Controller
     public function edit($id){
         $user=User::findOrFail($id);
         if ($user->rol_id == 1) {
-            return redirect()->route('users.index');
+            $notification_error = "No se puede editar la información de un usuario con un rol Administrador";
+            return redirect()->route("users.index")->with(compact('notification_error'));
         }
         $roles = Roles::where('id','!=',1)->get();
         return view('users.edit', compact('user', 'roles'));

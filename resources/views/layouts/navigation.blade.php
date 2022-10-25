@@ -193,21 +193,31 @@
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
-                    {{ __('Incidentes') }}
-                    @if (auth()->user()->sinSolucionar() > 0)
-                        <span
-                            class=" ml-1  hover:animate-ping w-4 h-4 bg-red-600 hover:bg-red-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
-                            {{ auth()->user()->sinSolucionar() }}</span>
-                    @endif
+                
+                @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 2)
+                    <x-responsive-nav-link :href="route('incidentes.show')" :active="request()->routeIs('incidentes.show')">
+                        {{ __('Incidentes') }}
+                        @if (auth()->user()->sinSolucionar() > 0)
+                            <span
+                                class=" ml-1  hover:animate-ping w-4 h-4 bg-red-600 hover:bg-red-800 rounded-full flex flex-col justify-center items-center text-xs text-white font-extrabold">
+                                {{ auth()->user()->sinSolucionar() }}</span>
+                        @endif
 
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('index.materiales')" :active="request()->routeIs('index.materiales')">
-                    {{ __('Materiales') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('index.equipos')" :active="request()->routeIs('index.equipos')">
-                    {{ __('Equipos') }}
-                </x-responsive-nav-link>
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('index.materiales')" :active="request()->routeIs('index.materiales')">
+                        {{ __('Materiales') }}
+                    </x-responsive-nav-link>
+                @endif
+
+
+
+                @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 2 || Auth::user()->rol_id == 3)
+                    <x-responsive-nav-link :href="route('index.equipos')" :active="request()->routeIs('index.equipos')">
+                        {{ __('Equipos') }}
+                    </x-responsive-nav-link>
+                @endif
+
+
                 <x-responsive-nav-link :href="route('incidentes.create', 'hardware')" :active="request()->routeIs('incidentes.create', 'hardware')">
                     {{ __('Incidente Hardware') }}
                 </x-responsive-nav-link>

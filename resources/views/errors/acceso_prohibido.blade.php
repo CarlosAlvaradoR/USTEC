@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>404 Error Page Design In Tailwind CSS</title>
+    <title>ACCESO DENEGADO</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
@@ -56,20 +56,25 @@
             <div class="bg-white shadow overflow-hidden sm:rounded-lg pb-8">
                 <div class="border-t border-gray-200 text-center pt-8">
                     <h1 class="text-9xl font-bold text-purple-400">404</h1>
-                    <h1 class="text-6xl font-medium py-8">oops! Page not found</h1>
-                    <p class="text-2xl pb-8 px-12 font-medium">Oops! The page you are looking for does not exist. It
-                        might have been moved or deleted.</p>
+                    <h1 class="text-6xl font-medium py-8">Opps! No tiene permiso para poder ingresar a la página</h1>
+                    <p class="text-2xl pb-8 px-12 font-medium">Comuníquese con el administrador para que pueda
+                        concederle permisos</p>
                     <a href="/dashboard">
-                        <button
-                            class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
-                            Inicio
+                        <button type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            Volver al Inicio
                         </button>
+
+                        <!--<button
+                            class="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
+                            Volver al Inicio
+                        </button>-->
                     </a>
 
-                    <button
+                    <!--<button
                         class="bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-500 text-white font-semibold px-6 py-3 rounded-md">
                         Contact Us
-                    </button>
+                    </button>-->
                 </div>
             </div>
         </div>
