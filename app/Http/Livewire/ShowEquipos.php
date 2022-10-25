@@ -12,6 +12,10 @@ class ShowEquipos extends Component
     
     public $search;
 
+    protected $queryString = [
+        'search' => ['except' => '']
+    ];
+
     public function render()
     {
         $equipos = Equipo::where('codigo','like','%'.$this->search.'%')
@@ -23,5 +27,10 @@ class ShowEquipos extends Component
 
         return view('livewire.show-equipos', compact('equipos'))
         ->layout('layouts.app', ['header' => 'Lista de Equipos']);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }
