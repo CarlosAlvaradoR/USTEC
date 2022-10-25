@@ -75,10 +75,18 @@ class CreateIncidenteHardware extends Component
         }
         //  Mail::to(auth()->user()->email)->send(new NotiEmail($mailData));
 
-        //Crear un Mensaje
-        session()->flash('mensaje', 'El incidente se guardo correctamente');
+        if (auth()->user()->rol_id != '1' && auth()->user()->rol_id != '2') {
+            $mensaje = 'Se acaba de notificar su incidente a los trabajadores. Por favor espere, solucionaremos el problema cuanto antes.';
+            $this->reset(['titulo', 'descripcion','gravedad']);
+            session()->flash('mensaje_hardware', $mensaje);
+        } else {
+            //Crear un Mensaje
+            session()->flash('mensaje', 'El incidente se guardo correctamente');
 
-        //redireccionar al usuario
-        return redirect()->route('incidentes.show');
+            //redireccionar al usuario
+            return redirect()->route('incidentes.show');
+        }
+        
+        
     }
 }

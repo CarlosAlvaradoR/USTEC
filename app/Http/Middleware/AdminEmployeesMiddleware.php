@@ -19,6 +19,7 @@ class AdminEmployeesMiddleware
         if(auth()->user()->rol_id == 1 || auth()->user()->rol_id == 2) //Si el usuario es Admin o trabajador
             return $next($request); //El next le permitirá continuar
 
-        return redirect()->route('dashboard');
+        return redirect()->route('prohibido');
+        //return response()->view('errors.404', [], 404);
     }
 }
