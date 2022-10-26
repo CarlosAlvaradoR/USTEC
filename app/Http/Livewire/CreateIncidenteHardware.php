@@ -78,11 +78,11 @@ class CreateIncidenteHardware extends Component
         if (auth()->user()->rol_id != '1' && auth()->user()->rol_id != '2') {
             $mensaje = 'Se acaba de notificar su incidente a los trabajadores. Por favor espere, solucionaremos el problema cuanto antes.';
             $this->reset(['titulo', 'descripcion','gravedad']);
-            session()->flash('mensaje_hardware', $mensaje);
+            //session()->flash('mensaje_hardware', $mensaje);
+            $this->emit('alert_hardware', $mensaje);
         } else {
             //Crear un Mensaje
             session()->flash('mensaje', 'El incidente se guardo correctamente');
-
             //redireccionar al usuario
             return redirect()->route('incidentes.show');
         }

@@ -5,7 +5,7 @@
         </h2>
     </div>
 
-    @if (session()->has('mensaje_hardware'))
+    {{--@if (session()->has('mensaje_hardware'))
         <div id="alert-1" class="flex p-4 mb-4 bg-blue-100 rounded-lg dark:bg-blue-200" role="alert">
             <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-blue-700 dark:text-blue-800" fill="currentColor"
                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
             </button>
             
         </div>
-    @endif
+    @endif--}}
 
     <div class="p-6 md:flex mt-3  ">
         <div class="md:w-full">

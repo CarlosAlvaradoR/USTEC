@@ -73,7 +73,8 @@ class CreateIncidenteSoftware extends Component
             //dd('Notificador');
             $mensaje = 'Se acaba de notificar su incidente a los trabajadores. Por favor espere, solucionaremos el problema cuanto antes.';
             $this->reset(['titulo', 'descripcion','gravedad','area']);
-            session()->flash('mensaje_software', $mensaje);
+            $this->emit('alert_software', $mensaje);
+            //session()->flash('mensaje_software', $mensaje);
         }
         
         /*
