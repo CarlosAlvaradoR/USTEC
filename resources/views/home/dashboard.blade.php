@@ -168,7 +168,7 @@
         </div>
     </div>
     <div class="text-center m-2 text-gray-600 pb-2">
-        OGTISE - UNIVERSIDAD SANTIAGO ANTUNEZ DE MAYOLO
+        OGTISE - UNIVERSIDAD NACIONAL SANTIAGO ANTUNEZ DE MAYOLO
     </div>
 
 
