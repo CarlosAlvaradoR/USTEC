@@ -54,8 +54,8 @@
                                 <h2 class="font-extrabold text-gray-700  text-4xl">{{$incidentes->count()}}</h2>
                                 <p class="text-gray-500 text-xs">Total incidentes
                                 </p>
-                                <p class="text-gray-600 text-xs">Tipo uno: {{$totalTipoUno}},
-                                    Tipo dos: {{$totalTipoDos}} </p>
+                                <p class="text-gray-600 text-xs">Hardware: {{$totalTipoUno}},
+                                    Software: {{$totalTipoDos}} </p>
                             </div>
 
                             <div class="bg-orange-600 border rounded-lg p-1 ">
@@ -238,14 +238,14 @@ console.log(dataDos);
         labels: monthNames,
         datasets: [{
             type: 'line',
-            label: 'Tipo 1',
+            label: 'Hardware',
             data: dataUno,
             borderColor: 'rgb(255, 99, 132)',
             
             fill: true,
         }, {
             type: 'line',
-            label: 'Tipo 2',
+            label: 'Software',
             data: dataDos,
             fill: true,
             borderColor: 'rgb(54, 162, 235)'
