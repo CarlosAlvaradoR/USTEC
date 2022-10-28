@@ -17,7 +17,7 @@ class UsuariosSeeder extends Seeder
     {
         //Insertar Información para el usuario administrador
         $user = User::create([
-            'name'=> 'Admin', 
+            'name'=> 'Carlos', 
             'email'=> 'carlos2000emilioa@gmail.com', 
             'email_verified_at'=> date('Y-m-d H:m:s'), 
             'password'=> bcrypt('123456789'), 
@@ -27,8 +27,16 @@ class UsuariosSeeder extends Seeder
 
         //Insertar Información para el usuario Trabajador (TRABAJADOR DE OGTISE)
         $user = User::create([
-            'name'=> 'Jescenia', 
-            'email'=> 'jescenia@gmail.com', 
+            'name'=> 'Jescenia Melgarejo Príncipe', 
+            'email'=> 'jesmelgarejo46@gmail.com', 
+            'email_verified_at'=> date('Y-m-d H:m:s'), 
+            'password'=> bcrypt('123456789'), 
+            'status'=> 1, //Activo 
+            'rol_id'=> 2,
+        ]);
+        $user = User::create([
+            'name'=> 'Carlos Orellano', 
+            'email'=> 'orellano428@gmail.com', 
             'email_verified_at'=> date('Y-m-d H:m:s'), 
             'password'=> bcrypt('123456789'), 
             'status'=> 1, //Activo 
