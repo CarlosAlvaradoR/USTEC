@@ -36,7 +36,7 @@
                     <div>
 
                         <div>
-                            <x-label for="area" :value="__('Area')" />
+                            <x-label for="area" :value="__('Oficina')" />
                             <select wire:model.defer="area" id="area"
                                 class="w-full  rounded-md shadow-sm border-gray-300
                         focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">

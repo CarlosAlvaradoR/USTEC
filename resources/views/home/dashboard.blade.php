@@ -352,7 +352,7 @@ function mostrarAreas(){
                     title: {
                         display: true,
                        
-                        text: 'CANTIDAD DE INCIDENTES POR AREA'
+                        text: 'CANTIDAD DE INCIDENTES POR OFICINAS'
                     }
                 }
             }
