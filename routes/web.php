@@ -20,6 +20,11 @@ use App\Http\Controllers\SalidaMaterialesController;
 
 Route::get('/',  [HomeController::class, 'index'])->name('home');
 
+//Errors
+Route::get('/prohibido', function () {
+    return view('errors.acceso_prohibido');
+})->name('prohibido');
+
 //Incidentes
 require __DIR__ . '/all_routes/incidentes.php';
 
@@ -33,6 +38,9 @@ Route::get('/salida/materiales/{idSalida}/{opcional}', [SalidaMaterialesControll
 Route::post('/salidas/materiales', [SalidaMaterialesController::class, 'store'])->middleware(['auth', 'verified'])->name('salida.materiales.store');
 
 /********************* */
+
+
+
 //Materiales
 require __DIR__ . '/all_routes/materiales.php';
 

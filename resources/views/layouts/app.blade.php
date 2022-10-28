@@ -43,6 +43,24 @@
 
     <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
 
+    <script>
+        //Para escuchar un evento desde un script
+        Livewire.on('alert_software', function (message) {
+            Swal.fire(
+                'MUY BIEN',
+                message,
+                'info'
+            )
+        });
+
+        Livewire.on('alert_hardware', function (message) {
+            Swal.fire(
+                'MUY BIEN',
+                message,
+                'info'
+            )
+        });
+    </script>
 </body>
 
 </html>

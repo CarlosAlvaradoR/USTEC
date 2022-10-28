@@ -14,10 +14,19 @@ class ShowMateriales extends Component
     
     protected $listeners = ['render'];
 
+    protected $queryString = [
+        'search' => ['except' => '']
+    ];
+    
     public function render()
     {
         $materiales = Materiales::where('nombre','like','%'.$this->search.'%')->paginate(4);
         return view('livewire.show-materiales', compact('materiales'))
         ->layout('layouts.app', ['header' => 'Lista de Materiales']);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

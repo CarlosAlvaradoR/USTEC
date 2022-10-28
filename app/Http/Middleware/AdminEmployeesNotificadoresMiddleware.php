@@ -19,6 +19,7 @@ class AdminEmployeesNotificadoresMiddleware
         if(auth()->user()->rol_id == 1 || auth()->user()->rol_id == 2 || auth()->user()->rol_id == 3) //Si el usuario es Admin o trabajador o Notificador
             return $next($request); //El next le permitirá continuar
 
-        return redirect()->route('dashboard');
+        //return redirect()->route('dashboard');
+        return redirect()->route('prohibido');
     }
 }

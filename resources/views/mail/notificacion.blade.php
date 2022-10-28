@@ -10,13 +10,14 @@
 </head>
 
 <body>
-    <h1 class="text-2xl text-blue-700 font-bold">Nuevo incidente en:{{ $mailData['equipo'] }} - {{$mailData['area']}}
+    <h1 class="text-2xl text-blue-700 font-bold">Nuevo incidente en: {{ $mailData['equipo'] }} - {{ $mailData['area'] }}
     </h1>
     <h2 class="text-xl text-gray-800">{{ $mailData['titulo'] }}</h2>
     <p class=" text-gray-500">Descripcion: {{ $mailData['descripcion'] }}</p>
-    <a href="{{route('incidentes.show')}}" class="font-medium text-black-600 dark:text-black-900 hover:underline">Ver
+    <a href="{{ route('incidentes.show') }}" class="font-medium text-black-600 dark:text-black-900 hover:underline">Ver
         Incidentes</a>
-    <p class="text-gray-400">Este incidente fue reportado por: <span class="text-gray-800">{{$mailData['user']}}</span>
+    <p class="text-gray-400">Este incidente fue reportado por: <span
+            class="text-gray-800">{{ $mailData['user'] }}</span>
     </p>
     {{-- <p class=" text-gray-500">Gravedad: {{ $mailData['descripcion'] }}</p> --}}
 </body>

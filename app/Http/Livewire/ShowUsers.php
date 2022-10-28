@@ -12,6 +12,10 @@ class ShowUsers extends Component
     
     public $search;
 
+    protected $queryString = [
+        'search' => ['except' => '']
+    ];
+
     public function render()
     {
         $users = User::select('users.id', 'users.name','users.email', 'roles.nombre','users.status')
@@ -24,5 +28,10 @@ class ShowUsers extends Component
                 
         return view('livewire.show-users', compact('users'))
         ->layout('layouts.app', ['header' => 'Lista de Usuarios']);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

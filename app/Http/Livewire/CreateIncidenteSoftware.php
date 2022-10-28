@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Area;
 use App\Models\User;
 use App\Mail\NotiEmail;
@@ -31,6 +32,8 @@ class CreateIncidenteSoftware extends Component
     }
     public function crearIncidente()
     {
+        //dd(Auth::user()->rol_id);
+        //return;
         $datos = $this->validate();
         //s  dd($this->equipo->id . ' ' . $this->tipo);
         Incidente::create([
@@ -59,11 +62,27 @@ class CreateIncidenteSoftware extends Component
             Mail::to($user->email)->send(new NotiEmail($mailData));
         }
 
+        if (auth()->user()->rol_id == '1' || auth()->user()->rol_id == '2') {
+            //dd('Trabajador');
+            //redireccionar al usuario
+            $mensaje = 'El incidente se guardo correctamente';
+            session()->flash('mensaje', $mensaje);
+            return redirect()->route('incidentes.show');
+            
+        } else {
+            //dd('Notificador');
+            $mensaje = 'Se acaba de notificar su incidente a los trabajadores. Por favor espere, solucionaremos el problema cuanto antes.';
+            $this->reset(['titulo', 'descripcion','gravedad','area']);
+            $this->emit('alert_software', $mensaje);
+            //session()->flash('mensaje_software', $mensaje);
+        }
+        
+        /*
         //Crear un Mensaje
         session()->flash('mensaje', 'El incidente  se guardo correctamente');
 
         //redireccionar al usuario
-        return redirect()->route('incidentes.show');
+        return redirect()->route('incidentes.show');*/
     }
 
 

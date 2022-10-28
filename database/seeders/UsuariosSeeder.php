@@ -24,5 +24,35 @@ class UsuariosSeeder extends Seeder
             'status'=> 1, //Activo 
             'rol_id'=> 1,
         ]);
+
+        //Insertar Información para el usuario Trabajador (TRABAJADOR DE OGTISE)
+        $user = User::create([
+            'name'=> 'Jescenia', 
+            'email'=> 'jescenia@gmail.com', 
+            'email_verified_at'=> date('Y-m-d H:m:s'), 
+            'password'=> bcrypt('123456789'), 
+            'status'=> 1, //Activo 
+            'rol_id'=> 2,
+        ]);
+
+        //Insertar Información para usuario de tipo Notificador (TIENE ACCESO A CREAR EQUIPOS)
+        $user = User::create([
+            'name'=> 'Ximena Azucena', 
+            'email'=> 'ximena@gmail.com', 
+            'email_verified_at'=> date('Y-m-d H:m:s'), 
+            'password'=> bcrypt('123456789'), 
+            'status'=> 1, //Activo 
+            'rol_id'=> 3,
+        ]);
+
+        //Insertar Información para el usuario administrador
+        $user = User::create([
+            'name'=> 'Ariana', 
+            'email'=> 'ariana@gmail.com', 
+            'email_verified_at'=> date('Y-m-d H:m:s'), 
+            'password'=> bcrypt('123456789'), 
+            'status'=> 1, //Activo 
+            'rol_id'=> 4,
+        ]);
     }
 }
